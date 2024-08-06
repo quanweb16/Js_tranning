@@ -22,27 +22,32 @@ p {
 header {
   background-color: #F1F4FA;
   color: #000;
-  padding: 20px 0;
+  padding: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 220px;
+  width: 100%;
 }
-
+.custom h2{
+  margin-right: 100px;
+  font-family:sans-serif ;
+}
 .btnAdd {
   margin-left: auto;
-  margin-right: 100px;
+  margin-right: 500px;
 }
 
 .btnAdd .addBtn {
-  background-color: #924cdc;
-  border-radius: 50px;
+  background-color: #3A36DB;
+  border-radius: 10px;
   border: none;
   box-shadow: rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0;
   color: #fff;
   cursor: pointer;
   font-family: Arial, sans-serif;
   font-size: 1em;
-  height: 50px;
+  height: 40px;
   padding: 0 25px;
   transition: all 200ms;
 }
@@ -58,13 +63,13 @@ header {
 
 .sidebar-menu {
   background-color: #fff;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  
   height: 100%;
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  overflow-y: auto;
+  overflow-y: hidden;
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -72,12 +77,13 @@ header {
 
 .sidebar-menu .logo {
   padding: 20px;
-  border-bottom: 1px solid #f1f1f1;
   text-align: center;
+  
 }
 
 .sidebar-menu .logo img {
   max-width: 80px;
+ 
 }
 
 .sidebar-menu .menu-items {
@@ -91,14 +97,14 @@ header {
   display: flex;
   align-items: center;
   padding: 14px 20px;
-  color: #333;
+  color: #a5a4a4;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .sidebar-menu .menu-item:hover {
   background-color: #f5f5f5;
-  color: #924cdc;
+  color: #3A36DB;
 }
 
 .sidebar-menu .menu-item i {
@@ -113,22 +119,23 @@ header {
 
 .sidebar-menu .upgrade-container {
   padding-top: 16px;
+  
 }
 
 .sidebar-menu .upgrade-btn {
-  background-color: #924cdc;
+  background-color: 
+#FF69B4;
   color: #fff;
   padding: 14px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 100%;
+  width: 80%;
+  margin-left: 20px;
+  margin-bottom: 50px;
 }
 
-.sidebar-menu .upgrade-btn:hover {
-  background-color: #7e3ac9;
-}
 
 .sidebar-menu .upgrade-btn span {
   font-size: 14px;
@@ -139,7 +146,7 @@ header {
   display: flex;
   align-items: center;
   padding: 16px 20px;
-  border-top: 1px solid #f1f1f1;
+  
 }
 
 .sidebar-menu .user-avatar {
@@ -223,14 +230,25 @@ header {
 
 .three-dots {
   cursor: pointer;
-  font-size: 24px; /* Increase size of the three dots */
+  font-size: 24px; 
   line-height: 1;
   user-select: none;
 }
 
 
-
-
+/* Cot bang user */
+.header-container {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-left: 220px;
+  width: 60%;
+  justify-content: space-between;
+  font-size: 10px;
+  margin-top: auto;
+  color: #666;
+  
+}
 
 
 .card {
@@ -239,15 +257,13 @@ header {
   padding: 12px; /* Giảm padding toàn bộ card */
   margin-bottom: 6px; /* Giảm khoảng cách dưới thẻ */
   border-radius: 8px; /* Giảm góc bo tròn */
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1); /* Giảm độ mờ bóng */
   background-color: #fff;
   width: 100%; /* Giữ kích thước tối đa của thẻ */
-  margin-left: 200px;
-  width: 80%;
-  
-  
+  margin-left: 220px;
+  width: 66%;
   font-size: 0.8em; /* Giảm kích thước chữ toàn bộ card */
   height: auto; /* Chiều cao tự động điều chỉnh */
+  position: relative;
  
 }
 .info {
@@ -272,17 +288,31 @@ header {
   font-size: 0.9em; /* Giảm kích thước chữ */
 }
 
-.email, .phone {
+.email {
   color: gray;
   font-size: 0.9em; /* Giảm kích thước chữ */
   margin-right: 6px; /* Giảm khoảng cách bên phải */
   color: #000;
+  position: absolute;
+  left: 27.5%;
+  
+}
+.phone {
+  color: gray;
+  font-size: 0.9em; /* Giảm kích thước chữ */
+  margin-right: 6px; /* Giảm khoảng cách bên phải */
+  color: #000;
+  position: absolute;
+  left: 54%;
+  
 }
 .gender {
-  padding: 4px 6px; /* Giảm padding */
-  border-radius: 12px; /* Giảm góc bo tròn */
+  padding: 3px 15px; /* Giảm padding */
+  border-radius: 15px; /* Giảm góc bo tròn */
   text-align: center;
-  margin-right: 6px; /* Giảm khoảng cách bên phải */
+  margin-right: -90px; /* Giảm khoảng cách bên phải */
+  position: absolute;
+  left: 85%;
 }
 
 .male {
@@ -332,3 +362,119 @@ header {
   outline: none; /* Xóa viền tiêu điểm mặc định */
 }
 
+/* Contact-user */
+
+
+.right-sidebar {
+  background-color: #fff;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-info {
+  margin-bottom: 20px;
+}
+
+.user-name {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.user-title {
+  font-size: 14px;
+  color: #666;
+}
+
+.contact-info {
+  margin-bottom: 20px;
+}
+
+.contact-info h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.contact-info p {
+  font-size: 14px;
+  color: #4A4A4A;
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  margin-bottom: 50px;
+}
+
+.contact-info i {
+  margin-right: 8px;
+  color: #4A4A4A;
+}
+
+.performance {
+  margin-bottom: 20px;
+}
+
+.performance h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.performance .chart {
+  background-color: #F1F4FA;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.performance .progress {
+  display: flex;
+  justify-content: space-around;
+}
+
+.progress-circle {
+  text-align: center;
+}
+
+.progress-circle .circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #E0E0E0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.progress-circle p {
+  font-size: 14px;
+  color: #4A4A4A;
+}
