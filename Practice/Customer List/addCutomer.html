@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/form.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="create-invoice-container">
+        <h2>Create New Invoice</h2>
+        <form class="form-invoice">            
+                <div class="user-img">
+                    <div class="image">
+                        <img src="" alt="add image">  
+                    </div>
+                </div>                            
+          <div class="form-group">
+            <label for="invoice-id">Invoice Id</label>
+            <input type="text" id="invoice-id" name="invoice-id" value="" placeholder="#8181" >
+          </div>
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" value="" >
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" value="" placeholder="QuanDoan">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="" placeholder="name@gmail.com">
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" value="" placeholder="Name City">
+          </div>
+          <div class="form-group">       
+              <button type="submit" class="btn-invoice-create">Invoice Create</button>
+                  
+          </div>
+        </form>
+      </div>
+      <script src="./scripts/adduser.js"></script>
+</body>
+</html>

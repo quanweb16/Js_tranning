@@ -35,20 +35,59 @@ header {
   margin-left: 200px;
   width: calc(100% - 220px); /* Điều chỉnh chiều rộng để trừ đi margin-left */
 }
+.search-container {
+  display: flex;
+  align-items: center;    
+  padding: 5px 10px;
+  max-width: 600px;
+  width: 20%;
+  margin-left: auto;
+  
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 15px 10px;
+}
+
+
+.search-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.search-button i {
+  font-size: 20px;
+  color: #999;
+  transition: color 0.5s;
+}
+.search-button i:hover,
+.search-button i:focus{
+  color: #00b8d4;
+}
+
 
 .custom h2 {
   font-family: sans-serif;
+  
 }
 
 .btnAdd {
-  margin-left: auto; /* Đẩy nút button sang bên phải */
+  margin-left: 30px; /* Đẩy nút button sang bên phải */
+  
 }
 
 .btnAdd .addBtn {
   background-color: #3A36DB;
   border-radius: 10px;
   border: none;
-  box-shadow: rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0;
   color: #fff;
   cursor: pointer;
   font-family: Arial, sans-serif;
@@ -63,8 +102,8 @@ header {
 }
 
 .custom {
-  margin-left: auto;
-  margin-right: 900px;
+  
+  margin-right: auto;
 }
 
 .sidebar-menu {
@@ -259,7 +298,8 @@ header {
 .header-item.checkbox-header{
   position: absolute;
   left: 1.4%;
-  
+  margin-bottom: -5px;
+  width: 50px;
 
 }
 .header-item.invoice-header{
@@ -291,8 +331,22 @@ header {
 .header-item.trash-header{
   position: absolute;
   left: 97.5%;
-  font-size: 15px;
+  font-size: 18px;
+
 }
+.delete-all{
+  border: none;
+
+}
+ .delete-all:hover,
+ .delete-all:focus {
+  color: #6a6a6a;
+  
+}
+.delete-all:active {
+  color: #00b8d4;
+}
+
 
 
 .card {
@@ -307,6 +361,9 @@ header {
   font-size: 0.8em;
   height: auto;
   position: relative;
+}
+.checkbox{
+  background-color: #00b8d4;
 }
 .invoice{
   margin-right: 6px; /* Giảm khoảng cách bên phải */
@@ -374,7 +431,9 @@ header {
 }
 
 
-.star {
+.special {
+  
+  border: none;
   position: absolute;
   top: 50%;
   left: 91%;
@@ -384,8 +443,8 @@ header {
   transition: color 0.3s; /* add transition effect */
 }
 
-.star:hover,
-.star.active {
+.special:hover,
+.special.active {
   color: #00b8d4; /* active color */
 }
 
