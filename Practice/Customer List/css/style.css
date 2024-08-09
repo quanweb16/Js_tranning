@@ -349,19 +349,30 @@ header {
 
 
 
-.card {
+.container {
   display: flex;
+  flex-wrap: wrap; /* Cho phép các thẻ card xuống hàng khi hết chỗ */
+  gap: 20px;
+  padding: 20px; /* Padding bên trong container */
+  margin-left: 190px; /* Khoảng cách từ lề trái */
+}
+
+/* Thẻ card */
+.card {
+  
+  display: flex;
+  flex-direction: column; /* Đặt các nội dung bên trong card theo cột */
   align-items: center;
   padding: 18px;
-  margin-bottom: 6px;
   border-radius: 8px;
   background-color: #fff;
-  margin-left: 210px;
-  width: calc(100vw - 220px);
   font-size: 0.8em;
   height: auto;
   position: relative;
+  width: 100%; /* Chiều rộng của card */
+  
 }
+
 .checkbox{
   background-color: #00b8d4;
 }
@@ -488,5 +499,103 @@ header {
 }
 
 /* Contact-user */
+
+
+/* Style cho form popup */
+.popup-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0 0 10px rgba(57, 14, 213, 0.1);
+  padding: 20px;
+  z-index: 1000;
+  width: 90%;
+  max-width: 500px;
+}
+
+/* Style cho form */
+.popup-form .form-invoice {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Style cho nhóm ảnh */
+.popup-form .user-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Căn giữa phần tử theo chiều ngang */
+  margin-bottom: 15px; /* Khoảng cách dưới nhóm ảnh */
+}
+
+/* Style cho phần ảnh */
+.popup-form .user-img .image {
+  margin-bottom: 10px; /* Khoảng cách dưới ảnh */
+}
+
+.popup-form .user-img .image img {
+  max-width: 100px; /* Kích thước tối đa của ảnh */
+  max-height: 100px; /* Kích thước tối đa của ảnh */
+  border-radius: 50%; /* Hình tròn */
+  object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+
+.popup-form input[type="file"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer; /* Thay đổi con trỏ khi di chuột qua */
+}
+
+/* Style cho các nhóm input */
+.popup-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Style cho các label */
+.popup-form label {
+  font-weight: bold;
+}
+
+/* Style cho các input */
+.popup-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* Đảm bảo input chiếm toàn bộ chiều rộng của nhóm */
+}
+
+/* Style cho tiêu đề */
+.popup-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Style cho nút tạo invoice */
+.popup-form .btn-invoice-create {
+  background-color: #433fff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 4px;
+  width: 50%;
+  margin-left: 25%;
+  
+}
+
+.popup-form .btn-invoice-create:hover {
+  background-color: #3a36db;
+}
+
+/* Style để làm mờ nền khi form popup hiện ra */
+
+
+
 
 
