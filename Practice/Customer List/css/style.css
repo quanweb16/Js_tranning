@@ -595,7 +595,22 @@ header {
 
 /* Style để làm mờ nền khi form popup hiện ra */
 
+.popup-form .btn-edit {
+  background-color: #433fff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 4px;
+  width: 50%;
+  margin-left: 25%;
+  
+}
 
+.popup-form .btn-edit:hover {
+  background-color: #3a36db;
+}
 
 
 
