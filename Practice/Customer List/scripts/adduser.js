@@ -89,7 +89,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Hàm thêm hóa đơn vào danh sách
+
+
+
+
+    // Hàm In  hóa đơn ra danh sách
     function addInvoiceToList(invoiceId, date, name, email, address, profileImgSrc) {
         const cardContainer = document.querySelector('.container');
         const newCard = document.createElement('div');
@@ -109,10 +113,22 @@ document.addEventListener('DOMContentLoaded', function() {
             profileImgSrc,
             status // Lưu trạng thái vào đối tượng hóa đơn
         };
-
-        // Lưu dữ liệu hóa đơn vào localStorage
+        
+        // Lấy dữ liệu hóa đơn từ localStorage
         let invoices = JSON.parse(localStorage.getItem('invoices')) || [];
-        invoices.push(invoiceData);
+        
+        // Kiểm tra xem hóa đơn với invoiceId đã tồn tại chưa
+        const existingInvoiceIndex = invoices.findIndex(invoice => invoice.invoiceId === invoiceId);
+        
+        if (existingInvoiceIndex !== -1) {
+            // Nếu đã tồn tại, cập nhật hóa đơn
+            invoices[existingInvoiceIndex] = invoiceData;
+        } else {
+            // Nếu chưa tồn tại, thêm hóa đơn mới
+            invoices.push(invoiceData);
+        }
+        
+        // Cập nhật lại localStorage
         localStorage.setItem('invoices', JSON.stringify(invoices));
         
         newInfo.innerHTML = `
@@ -150,7 +166,15 @@ document.addEventListener('DOMContentLoaded', function() {
         editBtn.addEventListener('click', function() {
             showEditForm(newCard, invoiceId, date, name, email, address, profileImgSrc);
         });
+        const starBtn = newCard.querySelector('.star .special');
+        starBtn.addEventListener('click', function() {
+            starBtn.classList.toggle('active');
+        });
     }
+
+
+
+
 
     // Hàm hiển thị form chỉnh sửa hóa đơn
     function showEditForm(cardElement, invoiceId, date, name, email, address, profileImgSrc) {
@@ -239,17 +263,38 @@ document.addEventListener('DOMContentLoaded', function() {
             cardElement.querySelector('.email').textContent = editedEmail;
             cardElement.querySelector('.profile-pic img').src = editedProfileImgSrc;
 
+            // Cập nhật thông tin hóa đơn trong localStorage
+            let invoices = JSON.parse(localStorage.getItem('invoices')) ||[];
+            const existingInvoiceIndex = invoices.findIndex(invoice=> invoice.invoiceId === invoiceId);
+            if (existingInvoiceIndex != -1){
+                invoices[existingInvoiceIndex]={
+                    invoiceId:editedInvoiceId,
+                    date: editedDate,
+                    name: editedName,
+                    email: editedEmail,
+                    profileImgSrc: editedProfileImgSrc,
+                    status : invoices[existingInvoiceIndex].status
+                };
+                localStorage.setItem('invoice',JSON.stringify(invoices));
+            }
+
             // Đóng form edit
             container.removeChild(formEdit);
             container.classList.remove('blurred');
         });
     }
 
+
+
+
+
+
+
     // Hàm hiển thị xác nhận xóa
     function showDeleteConfirm(cardElement) {
         const confirmContainer = document.createElement('div');
         confirmContainer.classList.add('confirm-delete');
-
+    
         confirmContainer.innerHTML = `
             <div class="confirm-delete-container">
                 <h2>Are you sure you want to delete this invoice?</h2>
@@ -259,26 +304,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `;
-
+    
         const container = document.querySelector('.container');
         container.appendChild(confirmContainer);
         container.classList.add('blurred');
-
-        // Xóa khi nhấn nút Yes
+    
+        const invoiceId = cardElement.querySelector('.invoice').textContent;
+    
+        // Xóa hóa đơn khỏi localStorage khi nhấn nút Yes
         const yesButton = confirmContainer.querySelector('.confirm-yes');
         yesButton.addEventListener('click', function() {
+            // Xóa hóa đơn khỏi DOM
             container.removeChild(cardElement);
+    
+            // Lấy dữ liệu hóa đơn từ localStorage
+            let invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+    
+            // Xóa hóa đơn với invoiceId tương ứng
+            invoices = invoices.filter(invoice => invoice.invoiceId !== invoiceId);
+    
+            // Cập nhật lại localStorage
+            localStorage.setItem('invoices', JSON.stringify(invoices));
+    
+            // Xóa cửa sổ xác nhận
             container.removeChild(confirmContainer);
             container.classList.remove('blurred');
         });
-
+    
         // Đóng xác nhận khi nhấn nút No
         const noButton = confirmContainer.querySelector('.confirm-no');
         noButton.addEventListener('click', function() {
             container.removeChild(confirmContainer);
             container.classList.remove('blurred');
         });
-
+    
         // Đóng xác nhận khi click ra ngoài
         confirmContainer.addEventListener('click', function(event) {
             if (event.target === confirmContainer) {
@@ -287,18 +346,79 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    //Hàm xóa nhiều hóa đơn bằng checkbox all
     function deleteSelectedInvoices() {
         const checkboxes = document.querySelectorAll('.checkbox');
         const cardContainer = document.querySelector('.container');
-
+        const selectedCards = [];
+    
+        // Kiểm tra xem cửa sổ xác nhận xóa đã tồn tại chưa
+        if (document.querySelector('.confirm-delete')) {
+            return; // Nếu đã tồn tại, không tạo thêm
+        }
+    
+        // Thu thập tất cả các thẻ được chọn
         checkboxes.forEach(checkbox => {
             if (checkbox.checked) {
                 const card = checkbox.closest('.card');
                 if (card) {
-                    showDeleteConfirm(card);
+                    selectedCards.push(card);
                 }
             }
         });
+    
+        // Nếu có ít nhất một thẻ được chọn, hiển thị xác nhận xóa
+        if (selectedCards.length > 0) {
+            const confirmContainer = document.createElement('div');
+            confirmContainer.classList.add('confirm-delete');
+    
+            confirmContainer.innerHTML = `
+                <div class="confirm-delete-container">
+                    <h2>Are you sure you want to delete ${selectedCards.length} selected invoices?</h2>
+                    <div class="confirm-buttons">
+                        <button class="confirm-yes">Yes</button>
+                        <button class="confirm-no">No</button>
+                    </div>
+                </div>
+            `;
+    
+            cardContainer.appendChild(confirmContainer);
+            cardContainer.classList.add('blurred');
+    
+            // Xóa tất cả các thẻ được chọn khi nhấn nút Yes
+            const yesButton = confirmContainer.querySelector('.confirm-yes');
+            yesButton.addEventListener('click', function() {
+                const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+                
+                selectedCards.forEach(card => {
+                    const invoiceId = card.querySelector('.invoice').textContent;
+                    cardContainer.removeChild(card);
+    
+                    // Xóa hóa đơn khỏi localStorage
+                    const updatedInvoices = invoices.filter(invoice => invoice.invoiceId !== invoiceId);
+                    localStorage.setItem('invoices', JSON.stringify(updatedInvoices));
+                });
+                
+                cardContainer.removeChild(confirmContainer);
+                cardContainer.classList.remove('blurred');
+            });
+    
+            // Đóng xác nhận khi nhấn nút No
+            const noButton = confirmContainer.querySelector('.confirm-no');
+            noButton.addEventListener('click', function() {
+                cardContainer.removeChild(confirmContainer);
+                cardContainer.classList.remove('blurred');
+            });
+    
+            // Đóng xác nhận khi click ra ngoài
+            confirmContainer.addEventListener('click', function(event) {
+                if (event.target === confirmContainer) {
+                    cardContainer.removeChild(confirmContainer);
+                    cardContainer.classList.remove('blurred');
+                }
+            });
+        }
     }
 
     // Hàm tìm kiếm hóa đơn
@@ -325,6 +445,15 @@ document.addEventListener('DOMContentLoaded', function() {
             cardContainer.removeChild(cardContainer.firstChild);
         }
     }
+    const headerCheckbox = document.querySelector('.checkbox-header .checkbox');
+    headerCheckbox.addEventListener('change', function() {
+        const allCheckboxes = document.querySelectorAll('.card .checkbox');
+        allCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = headerCheckbox.checked;
+        });
+    });
+
+    
 
     function restoreInvoices() {
         clearInvoices();
@@ -341,10 +470,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 invoice.status
             );
         });
-    }
-
-    
-    
+    } 
 
     // Thêm sự kiện cho ô tìm kiếm
     const searchInput = document.getElementById('search-input');
