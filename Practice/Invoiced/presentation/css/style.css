@@ -308,7 +308,7 @@ header {
 }
 .header-item.trash-header{
   position: absolute;
-  left: 97.5%;
+  left: 96.5%;
   font-size: 18px;
 
 }
@@ -573,7 +573,7 @@ header {
 
 /* Style để làm mờ nền khi form popup hiện ra */
 
-.popup-form .btn-invoice-edit {
+.popup-form .btn-edit {
   background-color: #433fff;
   color: white;
   border: none;
