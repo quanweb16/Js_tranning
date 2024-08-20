@@ -1,11 +1,16 @@
 function addInvoiceToList(invoiceId, date, name, email, address, profileImgSrc) {
     const cardContainer = document.querySelector('.container');
+
+    // Tạo phần tử thẻ card mới
     const newCard = document.createElement('div');
     newCard.classList.add('card');
+    
+    // Tạo phần tử thông tin trong thẻ card
     const newInfo = document.createElement('div');
     newInfo.classList.add('info');
-    
-    const status = 'Cancel'; // Đặt trạng thái mặc định là Pending
+
+    // Đặt trạng thái mặc định là 'Pending'
+    const status = 'Pending'; 
     const invoiceData = {
         invoiceId,
         date,
@@ -32,7 +37,8 @@ function addInvoiceToList(invoiceId, date, name, email, address, profileImgSrc) 
     
     // Cập nhật lại localStorage
     localStorage.setItem('invoices', JSON.stringify(invoices));
-    
+
+    // Tạo nội dung cho phần tử thông tin trong thẻ card
     newInfo.innerHTML = `
         <input type="checkbox" class="checkbox">
         <div class="invoice">${invoiceId}</div>
@@ -55,19 +61,24 @@ function addInvoiceToList(invoiceId, date, name, email, address, profileImgSrc) 
         </div>
     `;
 
+    // Thêm phần tử thông tin vào thẻ card
     newCard.appendChild(newInfo);
+    // Thêm thẻ card vào container
     cardContainer.appendChild(newCard);
 
+    // Xử lý sự kiện cho nút Delete
     const deleteBtn = newCard.querySelector('.delete-btn');
     deleteBtn.addEventListener('click', function() {
         showDeleteConfirm(newCard);
     });
 
-    // Sự kiện cho nút Edit
+    // Xử lý sự kiện cho nút Edit
     const editBtn = newCard.querySelector('.edit-btn');
     editBtn.addEventListener('click', function() {
         showEditForm(newCard, invoiceId, date, name, email, address, profileImgSrc);
     });
+
+    // Xử lý sự kiện cho nút Star
     const starBtn = newCard.querySelector('.star .special');
     starBtn.addEventListener('click', function() {
         starBtn.classList.toggle('active');

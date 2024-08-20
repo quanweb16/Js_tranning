@@ -1,4 +1,24 @@
 function showForm() {
+    // Tạo phần container cho form
+    const formContainer = createFormContainer();
+
+    // Thêm form vào container và áp dụng hiệu ứng mờ
+    const container = document.querySelector('.container');
+    container.appendChild(formContainer);
+    container.classList.add('blurred');
+
+    // Xử lý hiển thị hình ảnh khi người dùng chọn file
+    setupImageUpload(formContainer);
+
+    // Đóng form khi người dùng click ra ngoài
+    setupFormCloseEvent(formContainer, container);
+
+    // Xử lý sự kiện submit form
+    setupFormSubmitEvent(formContainer, container);
+}
+
+// Tạo phần container và gán HTML cho form
+function createFormContainer() {
     const formContainer = document.createElement('div');
     formContainer.classList.add('popup-form');
 
@@ -39,13 +59,14 @@ function showForm() {
         </div>
     `;
 
-    const container = document.querySelector('.container');
-    container.appendChild(formContainer);
-    container.classList.add('blurred');
+    return formContainer;
+}
 
-    // Hiển thị hình ảnh khi người dùng chọn file
+// Thiết lập sự kiện để hiển thị hình ảnh khi người dùng chọn file
+function setupImageUpload(formContainer) {
     const fileInput = formContainer.querySelector('#file-upload');
     const imgPreview = formContainer.querySelector('#profile-img-preview');
+
     fileInput.addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
@@ -56,14 +77,20 @@ function showForm() {
             reader.readAsDataURL(file);
         }
     });
+}
 
+// Thiết lập sự kiện để đóng form khi người dùng click ra ngoài
+function setupFormCloseEvent(formContainer, container) {
     formContainer.addEventListener('click', function(event) {
         if (event.target === formContainer) {
             container.removeChild(formContainer);
             container.classList.remove('blurred');
         }
     });
+}
 
+// Thiết lập sự kiện submit form và xử lý dữ liệu
+function setupFormSubmitEvent(formContainer, container) {
     const form = formContainer.querySelector('.form-invoice');
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Ngăn gửi form theo cách mặc định
@@ -74,7 +101,7 @@ function showForm() {
         const name = form.querySelector('#name').value;
         const email = form.querySelector('#email').value;
         const address = form.querySelector('#address').value;
-        const profileImgSrc = imgPreview.src;
+        const profileImgSrc = form.querySelector('#profile-img-preview').src;
 
         // Thêm dữ liệu vào danh sách hóa đơn
         addInvoiceToList(invoiceId, date, name, email, address, profileImgSrc);
