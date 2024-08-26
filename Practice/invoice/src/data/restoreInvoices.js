@@ -1,9 +1,8 @@
-function clearInvoices() {
+export function clearInvoices() {
     const cardContainer = document.querySelector('.container');
     while (cardContainer.firstChild) {
         cardContainer.removeChild(cardContainer.firstChild);
     }
-}
 const headerCheckbox = document.querySelector('.checkbox-header .checkbox');
 headerCheckbox.addEventListener('change', function() {
     const allCheckboxes = document.querySelectorAll('.card .checkbox');
@@ -11,8 +10,9 @@ headerCheckbox.addEventListener('change', function() {
         checkbox.checked = headerCheckbox.checked;
     });
 });
+}
 
-function restoreInvoices() {
+export function restoreInvoices() {
     clearInvoices();
     const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
     console.log('Restoring invoices:', invoices);
@@ -28,3 +28,4 @@ function restoreInvoices() {
         );
     });
 } 
+
