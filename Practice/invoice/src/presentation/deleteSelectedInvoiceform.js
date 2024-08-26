@@ -1,5 +1,5 @@
 import{createDeleteConfirmation} from '../template/formTemplate.js';
-import { isDeleteConfirmationDisplayed,gatherSelectedCards,setupDeleteSelectedYesButton,setupNoButtonEvent,setupCloseOnOutsideClick } from '../../business-logic/eventDeleteSelect.js';
+import { isDeleteConfirmationDisplayed,gatherSelectedCards,setupDeleteSelectedYesButton,setupNoButtonEvent,setupCloseOnOutsideClick } from '../business-logic/eventDeleteSelect.js';
 export function deleteSelectedInvoices() {
     const checkboxes = document.querySelectorAll('.checkbox');
     const cardContainer = document.querySelector('.container');

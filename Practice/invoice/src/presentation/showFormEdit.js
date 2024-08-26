@@ -1,5 +1,5 @@
 import {createEditFormContainer} from'../template/formTemplate.js';
-import { setupFormCloseEvent,setupImageUploadEdit,setupFormSubmitEventEdit,updateCardElement,updateLocalStorageInvoice } from '../business-logic/formEventEdit';
+import { setupFormCloseEvent,setupImageUploadEdit,setupFormSubmitEventEdit,updateCardElement,updateLocalStorageInvoice } from '../business-logic/formEventEdit.js';
 
 function showEditForm(cardElement, invoiceId, date, name, email, address, profileImgSrc) {
     // Tạo container cho form edit
