@@ -1,8 +1,7 @@
-export function createInvoicePopup(onCreate) {
-    const formContainer = document.createElement('div');
-    formContainer.classList.add('popup-form');
+// src/Template/createInvoiceTemplate.js
 
-    formContainer.innerHTML = `
+export function getCreateInvoiceTemplate() {
+    return `
         <div class="create-invoice-container">
             <h2>Create New Invoice</h2>
             <form class="form-invoice">
@@ -39,32 +38,4 @@ export function createInvoicePopup(onCreate) {
             <button class="close-popup">Close</button>
         </div>
     `;
-
-    // Xử lý sự kiện submit của form
-    const form = formContainer.querySelector('.form-invoice');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const invoiceData = {
-            id: form.querySelector('#invoice-id').value,
-            date: form.querySelector('#date').value,
-            name: form.querySelector('#name').value,
-            email: form.querySelector('#email').value,
-            address: form.querySelector('#address').value,
-            status: 'Pending', // Hoặc giá trị mặc định khác
-        };
-        if (typeof onCreate === 'function') {
-            onCreate(invoiceData);
-        }
-        closePopup();
-    });
-
-    // Xử lý sự kiện đóng popup
-    const closeButton = formContainer.querySelector('.close-popup');
-    closeButton.addEventListener('click', closePopup);
-
-    function closePopup() {
-        formContainer.remove();
-    }
-
-    return formContainer;
 }

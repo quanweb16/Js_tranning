@@ -1,8 +1,7 @@
-export function editInvoicePopup(invoiceId, profileImgSrc, date, name, email, address) {
-    const formEdit = document.createElement('div');
-    formEdit.classList.add('popup-form');
+// src/Template/editInvoiceTemplate.js
 
-    formEdit.innerHTML = `
+export function getEditInvoiceTemplate(profileImgSrc, invoiceId, date, name, email, address) {
+    return `
         <div class="create-invoice-container">
             <h2>Edit Invoice</h2>
             <form class="form-invoice">
@@ -36,7 +35,7 @@ export function editInvoicePopup(invoiceId, profileImgSrc, date, name, email, ad
                     <button type="submit" class="btn-edit">Save Changes</button>
                 </div>
             </form>
+             <button class="close-popup">Close</button>
         </div>
     `;
-    return formEdit;
 }
