@@ -1,6 +1,6 @@
 import { invoiceService } from '../../../BusinessLogic/invoiceService.js';
 import { getInvoiceTemplate } from '../../../Template/invoiceTemplate.js';
-import { attachDeleteButtonHandler } from './handleDeleteInvoice.js';
+import { attachDeleteButtonHandler } from '../action/handleDeleteInvoice.js';
 export function handleSearchResults(searchResults) {
     const container = document.querySelector('.container');
     

@@ -1,7 +1,7 @@
 // src/Presentation/searchInvoices.js
 
 import { invoiceService } from '../../../BusinessLogic/invoiceService.js';
-import { handleSearchResults } from '../action/showSearchResults.js';
+import { handleSearchResults } from '../view/showSearchResults.js';
 
 // Ví dụ sử dụng trong hàm tìm kiếm
 export function searchInvoices() {

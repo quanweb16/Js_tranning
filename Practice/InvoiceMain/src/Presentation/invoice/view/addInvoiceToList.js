@@ -2,7 +2,7 @@
 
 import { getInvoiceTemplate } from '../../../Template/invoiceTemplate.js';
 import { invoiceService } from '../../../BusinessLogic/invoiceService.js';
-import { attachDeleteButtonHandler } from './handleDeleteInvoice.js'; // Cập nhật đường dẫn import
+import { attachDeleteButtonHandler } from '../action/handleDeleteInvoice.js'; // Cập nhật đường dẫn import
 
 export function handleAddNew() {
     const container = document.querySelector('.container');
@@ -17,7 +17,6 @@ export function handleAddNew() {
         infoContainer.innerHTML = getInvoiceTemplate(invoice);
         cardContainer.appendChild(infoContainer);     
         container.appendChild(cardContainer);
-
         attachDeleteButtonHandler(infoContainer, invoice.id, handleAddNew); // Gắn sự kiện xóa
     });
 }

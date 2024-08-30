@@ -1,6 +1,6 @@
 // src/Presentation/main.js
 
-import { handleAddNew } from './Presentation/invoice/action/addInvoiceToList.js';
+import { handleAddNew } from './Presentation/invoice/view/addInvoiceToList.js';
 import { showCreateInvoicePopup } from './Presentation/form/formUI/showCreateInvoicePopup.js';
 import { showEditInvoicePopup } from './Presentation/form/formUI/showEditInvoicePopup.js';
 import { showDeleteConfirmationPopup } from './Presentation/form/formUI/showDeleteConfirmationPopup.js';
