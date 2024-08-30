@@ -463,6 +463,7 @@ header {
 .menu-itemss {
   display: none;
   position: absolute;
+  z-index: 1000;
   top: auto; /* Giảm khoảng cách từ ba chấm đến menu */
   right: auto;
   background-color: #fff;

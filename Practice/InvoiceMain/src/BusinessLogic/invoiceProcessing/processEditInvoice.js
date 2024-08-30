@@ -15,7 +15,8 @@ export function processEditInvoice(updatedInvoiceData) {
         name: updatedInvoiceData.name,
         email: updatedInvoiceData.email,
         address: updatedInvoiceData.address,
-        profileImgSrc: profileImgSrc
+        profileImgSrc: profileImgSrc,
+        status: 'Pending'
     };
 
     invoiceService.updateInvoice(updatedInvoice);

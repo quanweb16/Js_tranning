@@ -27,17 +27,26 @@ export const invoiceService = {
     },
     searchInvoices(keyword) {
         const invoices = this.getInvoices();
-
+    
+        // Trả về tất cả hóa đơn nếu không có từ khóa
         if (!keyword) {
             return invoices;
         }
-
+    
         const keywordLower = keyword.toLowerCase();
-
-        return invoices.filter(invoice => 
-            (invoice.id && invoice.id.toLowerCase().includes(keywordLower)) ||
-            (invoice.name && invoice.name.toLowerCase().includes(keywordLower)) ||
-            (invoice.email && invoice.email.toLowerCase().includes(keywordLower))
-        );
+    
+        return invoices.filter(invoice => {
+            // Tạo một mảng các giá trị để tìm kiếm
+            const fieldsToSearch = [
+                invoice.id,
+                invoice.name,
+                invoice.email
+            ];
+    
+            // Sử dụng some() để kiểm tra nếu bất kỳ trường nào khớp với từ khóa
+            return fieldsToSearch.some(field => 
+                field && field.toLowerCase().includes(keywordLower)
+            );
+        });
     }
 };
