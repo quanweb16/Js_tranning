@@ -21,16 +21,15 @@ export class InvoiceManager {
         const container = document.querySelector('.container');
         const popupElement = document.querySelector('.popup-form');
         container.removeChild(popupElement);
+        window.location.reload();
     }
 
     static handleEditInvoice(event, invoiceId) {
         event.preventDefault();
-
         const date = document.getElementById('date').value;
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const address = document.getElementById('address').value;
-
         const updatedInvoice = new Invoice(
             invoiceId,
             name,
@@ -43,5 +42,7 @@ export class InvoiceManager {
         const container = document.querySelector('.container');
         const popupElement = document.querySelector('.popup-form');
         container.removeChild(popupElement);
+        window.location.reload();
+        
     }
 }

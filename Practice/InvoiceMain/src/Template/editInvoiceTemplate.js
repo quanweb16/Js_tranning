@@ -1,35 +1,35 @@
 // src/Template/editInvoiceTemplate.js
 
-export function getEditInvoiceTemplate(profileImgSrc, invoiceId, date, name, email, address) {
+export function getEditInvoiceTemplate(invoice) {
     return `
         <div class="create-invoice-container">
             <h2>Edit Invoice</h2>
             <form class="form-invoice">
                 <div class="user-img">
                     <div class="image">
-                        <img src="${profileImgSrc}" alt="add image" id="profile-img-preview-edit">
+                        <img src=""${invoice.profileImgSrc}" alt="add image" id="profile-img-preview-edit">
                         <input type="file" id="file-upload-edit" name="file-upload-edit">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="invoice-id">Invoice Id</label>
-                    <input type="text" id="invoice-id" name="invoice-id" value="${invoiceId}">
+                    <input type="text" id="invoice-id" name="invoice-id" value="${invoice.id}">
                 </div>
                 <div class="form-group">
                     <label for="date">Date</label>
-                    <input type="date" id="date" name="date" value="${date}">
+                    <input type="date" id="date" name="date" value="${invoice.date}">
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" value="${name}">
+                    <input type="text" id="name" name="name" value="${invoice.name}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="${email}">
+                    <input type="email" id="email" name="email" value="${invoice.email}">
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" id="address" name="address" value="${address}">
+                    <input type="text" id="address" name="address" value="${invoice.address}">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn-edit">Save Changes</button>

@@ -7,7 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
         InvoicePopupManager.showCreateInvoicePopup();
     });
     InvoicePopupManager.showInvoices();
-    document.querySelector('.edit-btn').addEventListener('click',()=>{
-        InvoicePopupManager.showEditInvoicePopup();
+
+    // Gán sự kiện click cho tất cả các nút "Edit"
+    document.querySelectorAll('.edit-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const invoiceId = button.dataset.invoiceId;
+            InvoicePopupManager.showEditInvoicePopup(invoiceId);
+        });
     });
 });

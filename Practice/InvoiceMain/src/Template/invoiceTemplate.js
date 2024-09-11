@@ -18,8 +18,8 @@ export function getInvoiceTemplate(invoice) {
             <div class="menuu">
                 <div class="dots">•••</div>
                 <div class="menu-itemss">
-                    <div class="menu-itemm edit-btn">Edit</div>
-                    <div class="menu-itemm delete-btn">Delete</div>
+                    <div class="menu-itemm edit-btn" data-invoice-id="${invoice.id}">Edit</div>
+                    <div class="menu-itemm delete-btn" data-invoice-id="${invoice.id}">Delete</div>
                 </div>
             </div>
         </div>
