@@ -30,7 +30,7 @@ export class InvoiceManager {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const address = document.getElementById('address').value;
-        const updatedInvoice = new Invoice(
+        const editInvoice = new Invoice(
             invoiceId,
             name,
             email,
@@ -38,11 +38,11 @@ export class InvoiceManager {
             'Pending',
             ''
         );
-        Invoice.editInvoice(invoiceId, updatedInvoice);
+        console.log('Editing invoice:', editInvoice); // Log hóa đơn cập nhật
+        Invoice.updateInvoice(editInvoice);
         const container = document.querySelector('.container');
         const popupElement = document.querySelector('.popup-form');
         container.removeChild(popupElement);
-        window.location.reload();
-        
+       
     }
 }

@@ -24,20 +24,26 @@ export class InvoicePopupManager {
     }
 
     static showEditInvoicePopup(id) {
-
         const container = document.querySelector('.container');
         const invoice = Invoice.getInvoiceById(id); 
-        console.log(invoice)
+        console.log('Invoice to edit:', invoice); // Kiểm tra invoice lấy được
+    
         const popupHtml = getEditInvoiceTemplate(invoice); 
         const popupElement = document.createElement('div');
         popupElement.className = 'popup-form';
         popupElement.innerHTML = popupHtml;
         container.appendChild(popupElement);
+    
         document.querySelector('.close-popup').addEventListener('click', () => {
             container.removeChild(popupElement);
         });
+    
+        document.querySelector('.form-edit-invoice').addEventListener('submit', (event) => {
+            InvoiceManager.handleEditInvoice(event, id); // Gọi phương thức edit với id
+        });
+    
 
-        document.querySelector('.form-edit-invoice').addEventListener('submit', (event) => InvoiceManager.handleEditInvoice(event,id));
+        
     }
     static showInvoices() {
         const container = document.querySelector('.container');

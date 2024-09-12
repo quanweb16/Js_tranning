@@ -15,9 +15,15 @@ export class Invoice {
         localStorageManager.saveInvoicesToLocalStorage(invoices);
     }
     static updateInvoice(updatedInvoice) {
-        let invoices = this.getInvoices(); 
-        invoices = invoices.map(invoice => invoice.id === updatedInvoice.id ? updatedInvoice : invoice);
-        localStorageManager.saveInvoices(invoices);
+        let invoices = this.getInvoices(); // Sử dụng `let` để thay đổi giá trị
+        console.log('Before update:', invoices); // Log trước khi cập nhật
+    
+        invoices = invoices.map(invoice =>
+            invoice.id === updatedInvoice.id ? updatedInvoice : invoice
+        );
+    
+        console.log('After update:', invoices); // Log sau khi cập nhật
+        localStorageManager.saveInvoicesToLocalStorage(invoices);
     }
 
     static deleteInvoice(id) {

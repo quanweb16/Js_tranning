@@ -6,7 +6,6 @@ export class localStorageManager {
         localStorage.setItem('invoices', JSON.stringify(invoices));
     }
 
-    // Lấy danh sách hóa đơn từ localStorage
     static getInvoicesFromLocalStorage() {
         const invoices = localStorage.getItem('invoices');
         return invoices ? JSON.parse(invoices) : [];

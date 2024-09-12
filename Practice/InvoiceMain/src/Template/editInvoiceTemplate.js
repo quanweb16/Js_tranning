@@ -4,7 +4,7 @@ export function getEditInvoiceTemplate(invoice) {
     return `
         <div class="create-invoice-container">
             <h2>Edit Invoice</h2>
-            <form class="form-invoice">
+            <form class="form-edit-invoice">
                 <div class="user-img">
                     <div class="image">
                         <img src=""${invoice.profileImgSrc}" alt="add image" id="profile-img-preview-edit">
