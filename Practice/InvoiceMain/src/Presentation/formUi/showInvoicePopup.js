@@ -26,7 +26,7 @@ export class InvoicePopupManager {
     static showEditInvoicePopup(id) {
         const container = document.querySelector('.container');
         const invoice = Invoice.getInvoiceById(id); 
-        console.log('Invoice to edit:', invoice); // Kiểm tra invoice lấy được
+        console.log('Invoice to edit:', invoice); 
     
         const popupHtml = getEditInvoiceTemplate(invoice); 
         const popupElement = document.createElement('div');
@@ -39,7 +39,7 @@ export class InvoicePopupManager {
         });
     
         document.querySelector('.form-edit-invoice').addEventListener('submit', (event) => {
-            InvoiceManager.handleEditInvoice(event, id); // Gọi phương thức edit với id
+            InvoiceManager.handleEditInvoice(event, id); 
         });
     
 
@@ -49,7 +49,7 @@ export class InvoicePopupManager {
         const container = document.querySelector('.container');
         const invoices = Invoice.getAllInvoices(); 
 
-        container.innerHTML = ''; // Xóa nội dung hiện tại trong container
+        container.innerHTML = ''; 
 
         invoices.forEach(invoice => {
             const cardContainer = document.createElement('div');

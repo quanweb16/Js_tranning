@@ -1,7 +1,7 @@
 // localStorageManager.js
 export class localStorageManager {
 
-    // Lưu danh sách hóa đơn vào localStorage
+   
     static saveInvoicesToLocalStorage(invoices) {
         localStorage.setItem('invoices', JSON.stringify(invoices));
     }
