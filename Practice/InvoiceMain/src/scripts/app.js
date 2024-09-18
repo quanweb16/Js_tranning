@@ -1,19 +1,19 @@
 import Business from "./business/invoiceProcess.js";
 import DataAccess from "./data-access/invoiceData.js";
-import Presentation from "./presentation/invoice.js";
+import InvoicePresentation from "./presentation/invoice.js";
 
 class App {
-    presentation = null;
+    InvoicePresentation = null;
     business = null;
     dataAccess = null;
 
     init() {
         this.dataAccess = new DataAccess();
         this.business = new Business(this.dataAccess);
-        this.presentation = new Presentation(this.business);
-
-        this.presentation.init();
+        this.InvoicePresentation= new InvoicePresentation(this.business);
+        this.InvoicePresentation.init();
     }
 }
+
 
 export default App;

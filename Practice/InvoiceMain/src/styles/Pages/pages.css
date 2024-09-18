@@ -1,0 +1,24 @@
+.invoices {
+    background: #F1F4FA;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .table {
+    width: 100%;
+  }
+  
+  .table-head {
+    display: flex;
+    background: #F1F4FA;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .table-item {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    margin-top: 10px;
+    border-radius: 15px;
+  }

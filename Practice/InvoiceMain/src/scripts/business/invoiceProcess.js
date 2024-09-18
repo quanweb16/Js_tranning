@@ -1,98 +1,97 @@
 class Business {
     constructor(dataAccess) {
         this.dataAccess = dataAccess;
+        
     }
 
     getInvoices() {
         return this.dataAccess.getInvoices();
     }
+    getInvoiceById(id) {
+        const invoices = this.getInvoices();
+        return invoices.find(invoice => invoice.id === id) || null;
+        
+    }
+    deleteInvoice(id) {
+        let invoices = this.getInvoices();
+        invoices = invoices.filter(invoice => invoice.id !== id);
+        this.dataAccess.saveInvoices(invoices);  
+    }
 
     addInvoice(data) {
-        // Validate input data
         if (!this.validateInvoiceData(data)) {
             throw new Error('Invalid invoice data');
         }
 
-        // Validate existing data
-        const existingInvoices = this.dataAccess.getInvoices();
+        const existingInvoices = this.getInvoices();
         if (this.isDuplicateInvoice(existingInvoices, data)) {
             throw new Error('Invoice with the same email or phone already exists');
         }
 
-        // Generate ID
-        const id = this.generateId();
-
-        // Save to data access
+        const id =data.id;
         const newInvoice = { ...data, id };
         this.dataAccess.addInvoice(newInvoice);
 
-        // Return data to presentation layer
         return newInvoice;
+    }
+    editInvoice(id, updatedData) {
+        let invoices = this.getInvoices();
+        const index = invoices.findIndex(invoice => invoice.id === id);
+
+        if (index === -1) {
+            throw new Error('Invoice not found');
+        }
+
+        invoices[index] = { ...invoices[index], ...updatedData };
+        this.dataAccess.saveInvoices(invoices);
     }
 
     validateInvoiceData(data) {
-        if (!data.email || !this.isValidEmail(data.email)) {
-            return false;
-        }
-        if (!data.phone || !this.isValidPhoneNumber(data.phone)) {
-            return false;
-        }
-        if (!data.invoiceId) {
-            return false;
-        }
-        if (data.name.length < 2) {
-            return false;
-        }
+        if (!data.email || !this.isValidEmail(data.email)) return false;
+        if (!data.id) return false;
+        if (data.name.length < 2) return false;
         return true;
     }
-
     isValidEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
 
-    isValidPhoneNumber(phone) {
-        const re = /^\d+$/;
-        return re.test(phone);
-    }
-
     isDuplicateInvoice(invoices, data) {
-        return invoices.some(invoice => 
-            invoice.email === data.email || invoice.phone === data.phone
-        );
+        return invoices.some(invoice => invoice.email === data.email);
+    }
+   
+    searchInvoices(query) {
+        const invoices = this.getInvoices();  
+        
+        if (!Array.isArray(invoices)) {
+            console.error('Invoices data is not initialized correctly.');
+            return [];
+        }
+    
+        query = query.toLowerCase().trim();
+        console.log('Search Query:', query); 
+    
+        return invoices.filter(invoice => {
+            
+            const idMatch = invoice.id.toLowerCase().includes(query);
+            const nameMatch = invoice.name.toLowerCase().includes(query);
+            const emailMatch = invoice.email.toLowerCase().includes(query);
+            const dateMatch = invoice.date.toLowerCase().includes(query);
+            const statusMatch = invoice.status.toLowerCase().includes(query);
+    
+            
+            console.log('ID Match:', idMatch);
+            console.log('Name Match:', nameMatch);
+            console.log('Email Match:', emailMatch);
+            console.log('Date Match:', dateMatch);
+            console.log('Status Match:', statusMatch);
+    
+    
+            return idMatch || nameMatch || emailMatch || dateMatch || statusMatch;
+        });
     }
 
-    generateId() {
-        return 'INV' + Date.now();
-    }
-
-    editInvoice(id, data) {
-        // Validate input data
-        if (!this.validateInvoiceData(data)) {
-            throw new Error('Invalid invoice data');
-        }
-
-        // Get data by id
-        const invoices = this.dataAccess.getInvoices();
-        const invoiceIndex = invoices.findIndex(invoice => invoice.id === id);
-
-        if (invoiceIndex === -1) {
-            throw new Error('Invoice not found');
-        }
-
-        // Validate existing data
-        if (this.isDuplicateInvoice(invoices, data)) {
-            throw new Error('Duplicate data');
-        }
-
-        // Update data
-        const updatedInvoice = { ...invoices[invoiceIndex], ...data };
-        invoices[invoiceIndex] = updatedInvoice;
-        this.dataAccess.saveInvoices(invoices);
-
-        // Return new data
-        return updatedInvoice;
-    }
 }
 
 export default Business;

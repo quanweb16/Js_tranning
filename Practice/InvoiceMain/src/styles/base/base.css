@@ -1,0 +1,43 @@
+.addButton {
+  position: absolute;
+  left: 90%;
+}
+
+.addButton .addBtn {
+  background-color: #3A36DB;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  height: 40px;
+  padding: 0 25px;
+  transition: all 200ms;
+}
+
+.addButton .addBtn:hover {
+  transform: scale(1.05);
+}
+
+.search-container {
+  position: absolute;
+  left: 70%;
+}
+
+.search-container .search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 15px 10px;
+}
+
+.search-container .search-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0 10px;
+}

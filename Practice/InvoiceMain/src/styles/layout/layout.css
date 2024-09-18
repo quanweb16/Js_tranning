@@ -1,0 +1,22 @@
+/* Sidebar styles */
+.sidebar {
+    background-color: #ffffff;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: hidden;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .main-content {
+    font-size: 10px;
+    margin-left: 170px; /* Đẩy phần main-content sang bên phải của sidebar */
+    padding: 20px;
+    flex-grow: 1;
+    background: #F1F4FA;
+    min-height: 100vh; /* Đảm bảo nội dung main-content chiếm hết chiều cao */
+  }
