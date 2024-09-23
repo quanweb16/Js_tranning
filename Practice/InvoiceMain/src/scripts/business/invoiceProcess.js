@@ -24,6 +24,10 @@ class Business {
         if (index === -1) {            
             return false;
         }
+        if (!this.isValidName(updatedData.name)) {
+            alert('Invalid name: Name cannot contain numbers.');
+            return false; 
+        }
         if (!this.isValidEmail(updatedData.email)) {
             alert('Invalid email: Email must contain at least one letter and be properly formatted.');
             return false; 
@@ -34,8 +38,11 @@ class Business {
             alert('Invoice with the same email already exists');
             return false; 
         }
+        if (!this.isValidAddress(updatedData.address)) {
+            alert('Invalid address: Address must contain at least two letters.');
+            return false; 
+        }
     
-       
         invoices[index] = { ...invoices[index], ...updatedData };
         this.dataAccess.saveInvoices(invoices);
         return true; 
@@ -63,6 +70,11 @@ class Business {
             alert('Invoice with the same email already exists');
             return null; 
         }
+        if (!this.isValidAddress(data.address)) {
+            alert('Invalid address: Address must contain at least two letters.');
+            return null;
+        }
+
     
         const newInvoice = { ...data };
         this.dataAccess.addInvoice(newInvoice);
@@ -111,6 +123,10 @@ class Business {
     isValidEmail(email) {
         const re = /^[a-zA-Z][\w.-]*@[a-zA-Z][\w.-]+\.[a-zA-Z]{2,}$/;
         return re.test(email);
+    }
+    isValidAddress(address) {
+        const re = /[a-zA-Z].*[a-zA-Z]/;
+        return re.test(address); 
     }
     
     isDuplicateId(invoices, id) {
