@@ -38,6 +38,10 @@ class Business {
             alert('Invoice with the same email already exists');
             return false; 
         }
+        if (!this.isValidDate(updatedData.date)) {
+            return false; // Thông báo đã được hiển thị trong hàm isValidDate
+        }
+    
         if (!this.isValidAddress(updatedData.address)) {
             alert('Invalid address: Address must contain at least two letters.');
             return false; 
@@ -50,32 +54,34 @@ class Business {
     
 
     addInvoice(data) {
-      
-        const isValid = this.validateInvoiceData(data);
+        if (!this.isValidId(data.id)) {
+            return null; // Thông báo đã được hiển thị trong hàm isValidId
+        }
     
+        const isValid = this.validateInvoiceData(data);
         if (!isValid) {
             return null; 
         }
-    
         const existingInvoices = this.getInvoices();
-    
   
         if (this.isDuplicateId(existingInvoices, data.id)) {
             alert('Invoice with the same ID already exists');
             return null; 
-        }
-    
-        
+        } 
         if (this.isDuplicateInvoice(existingInvoices, data)) {
             alert('Invoice with the same email already exists');
             return null; 
         }
+        if (!this.isValidDate(data.date)) {
+            return null; // Thông báo đã được hiển thị trong hàm isValidDate
+        }
+        
+
         if (!this.isValidAddress(data.address)) {
             alert('Invalid address: Address must contain at least two letters.');
             return null;
         }
-
-    
+        
         const newInvoice = { ...data };
         this.dataAccess.addInvoice(newInvoice);
         return newInvoice;
@@ -86,8 +92,10 @@ class Business {
             alert('Invalid id');
             return false; 
         }
-    
-        
+        if (!data.date) {
+            alert('Date is required.');
+            return false;
+        }
         if (!this.isValidName(data.name)) {
             alert('Invalid name: Name cannot contain numbers and must be at least 2 characters long.');
             return false;
@@ -98,10 +106,7 @@ class Business {
             return false;
         }
     
-        if (!data.date) {
-            alert('Date is required.');
-            return false;
-        }
+        
     
         if (!data.address) {
             alert('Address is required.');
@@ -114,6 +119,13 @@ class Business {
         }
     
         return true; 
+    }
+    isValidId(id) {
+        const hasNumber = /\d/.test(id);
+        if (!hasNumber) {
+            alert('Invalid ID: ID must contain at least one number.');
+        }
+        return hasNumber;
     }
     isValidName(name) {
         const nameContainsNumbers = /\d/.test(name);
@@ -128,6 +140,24 @@ class Business {
         const re = /[a-zA-Z].*[a-zA-Z]/;
         return re.test(address); 
     }
+    isValidDate(date) {
+        const inputDate = new Date(date);
+        const minDate = new Date('2020-01-01');
+        const currentDate = new Date();
+    
+        if (inputDate < minDate) {
+            alert('Invalid date: Date must be after January 1, 2020.');
+            return false;
+        }
+    
+        if (inputDate > currentDate) {
+            alert('Invalid date: Date cannot be in the future.');
+            return false;
+        }
+    
+        return true;
+    }
+    
     
     isDuplicateId(invoices, id) {
         return invoices.some(invoice => invoice.id === id);
