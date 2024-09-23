@@ -39,7 +39,7 @@ class Business {
             return false; 
         }
         if (!this.isValidDate(updatedData.date)) {
-            return false; // Thông báo đã được hiển thị trong hàm isValidDate
+            return false; 
         }
     
         if (!this.isValidAddress(updatedData.address)) {
@@ -55,7 +55,7 @@ class Business {
 
     addInvoice(data) {
         if (!this.isValidId(data.id)) {
-            return null; // Thông báo đã được hiển thị trong hàm isValidId
+            return null; 
         }
     
         const isValid = this.validateInvoiceData(data);
@@ -73,7 +73,7 @@ class Business {
             return null; 
         }
         if (!this.isValidDate(data.date)) {
-            return null; // Thông báo đã được hiển thị trong hàm isValidDate
+            return null; 
         }
         
 
@@ -105,8 +105,6 @@ class Business {
             alert('Invalid email: Email must contain at least one letter.');
             return false;
         }
-    
-        
     
         if (!data.address) {
             alert('Address is required.');

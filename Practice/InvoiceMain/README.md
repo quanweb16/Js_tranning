@@ -3,8 +3,7 @@
 - This is the document provided required for Javascript practice
 - Design [Figma](https://figma.com/design/G8rQ1mN8oQSyNX0AtO1pEn/Admin-Dashboard-UI-Kit-(Community)?node-id=807-18528&node-type=frame&t=7cL2CuJs1dd7zLK2-0)
 # TIMELINE
-- Expected: 100 hours (2024/08/5- 2024/09/23)
-- Total: 400 hours (2024/08/5 - 2024/09/23)
+- Estimate: ~30 days (2024/08/5- 2024/09/23)
 # TEAM SIZE
 - 1 Dev
 # TARGETS
@@ -18,7 +17,6 @@
 - HTML5
 - CSS3
 - JAVASCRIPT
-- JSON SERVER
 - PARCEL
 # HOW TO RUN
 - Clone source
@@ -29,15 +27,11 @@ Git checkout feature/practice
 ```bash
 git checkout feature/create-ui
 ``` 
-Go to folder json-server
-```bash
-cd json-server
-```
 Install packages
 ```bash
 npm install
 ```
-Run server
+Run project
 ```bash
 npm start
 ```
