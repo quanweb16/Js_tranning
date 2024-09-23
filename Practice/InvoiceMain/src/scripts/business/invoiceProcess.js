@@ -1,97 +1,150 @@
 class Business {
     constructor(dataAccess) {
         this.dataAccess = dataAccess;
-        
     }
 
     getInvoices() {
         return this.dataAccess.getInvoices();
     }
+
     getInvoiceById(id) {
         const invoices = this.getInvoices();
         return invoices.find(invoice => invoice.id === id) || null;
-        
     }
+
     deleteInvoice(id) {
         let invoices = this.getInvoices();
         invoices = invoices.filter(invoice => invoice.id !== id);
-        this.dataAccess.saveInvoices(invoices);  
-    }
-
-    addInvoice(data) {
-        if (!this.validateInvoiceData(data)) {
-            throw new Error('Invalid invoice data');
-        }
-
-        const existingInvoices = this.getInvoices();
-        if (this.isDuplicateInvoice(existingInvoices, data)) {
-            throw new Error('Invoice with the same email or phone already exists');
-        }
-
-        const id =data.id;
-        const newInvoice = { ...data, id };
-        this.dataAccess.addInvoice(newInvoice);
-
-        return newInvoice;
+        this.dataAccess.saveInvoices(invoices);
     }
     editInvoice(id, updatedData) {
         let invoices = this.getInvoices();
         const index = invoices.findIndex(invoice => invoice.id === id);
-
-        if (index === -1) {
-            throw new Error('Invoice not found');
+        
+        if (index === -1) {            
+            return false;
         }
-
+    
+        
+        if (this.isDuplicateInvoice(invoices, updatedData) && updatedData.email !== invoices[index].email) {
+            alert('Invoice with the same email already exists');
+            return false; 
+        }
+    
+       
         invoices[index] = { ...invoices[index], ...updatedData };
         this.dataAccess.saveInvoices(invoices);
+        return true; 
+    }
+    
+
+    addInvoice(data) {
+      
+        const isValid = this.validateInvoiceData(data);
+    
+        if (!isValid) {
+            return null; 
+        }
+    
+        const existingInvoices = this.getInvoices();
+    
+  
+        if (this.isDuplicateId(existingInvoices, data.id)) {
+            alert('Invoice with the same ID already exists');
+            return null; 
+        }
+    
+        
+        if (this.isDuplicateInvoice(existingInvoices, data)) {
+            alert('Invoice with the same email already exists');
+            return null; 
+        }
+    
+        const newInvoice = { ...data };
+        this.dataAccess.addInvoice(newInvoice);
+        return newInvoice;
+    }
+    
+    validateInvoiceData(data) {
+       
+        if (!data.id) {
+            alert('Invalid id');
+            return false; 
+        }
+    
+        
+        if (!data.name || data.name.length < 2) {
+            alert('Invalid name');
+            return false;
+        }
+    
+        
+        if (!data.email || !this.isValidEmail(data.email)) {
+            alert('Invalid email ');
+            return false;
+        }
+    
+        
+        if (!data.date) {
+            alert('Date is required.');
+            return false;
+        }
+    
+        
+        if (!data.address) {
+            alert('Address is required.');
+            return false;
+        }
+    
+        
+        if (!data.profileImgSrc || data.profileImgSrc === 'path/to/default/image.png') {
+            alert('Profile image is required.');
+            return false;
+        }
+    
+        return true; 
     }
 
-    validateInvoiceData(data) {
-        if (!data.email || !this.isValidEmail(data.email)) return false;
-        if (!data.id) return false;
-        if (data.name.length < 2) return false;
-        return true;
-    }
     isValidEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
+        return re.test(email); 
+    }
+    
+    isDuplicateId(invoices, id) {
+        return invoices.some(invoice => invoice.id === id);
     }
 
     isDuplicateInvoice(invoices, data) {
         return invoices.some(invoice => invoice.email === data.email);
     }
-   
+
     searchInvoices(query) {
-        const invoices = this.getInvoices();  
-        
+        const invoices = this.getInvoices();
+
         if (!Array.isArray(invoices)) {
             console.error('Invoices data is not initialized correctly.');
             return [];
         }
-    
+
         query = query.toLowerCase().trim();
-        console.log('Search Query:', query); 
-    
+        console.log('Search Query:', query);
+
         return invoices.filter(invoice => {
-            
             const idMatch = invoice.id.toLowerCase().includes(query);
             const nameMatch = invoice.name.toLowerCase().includes(query);
             const emailMatch = invoice.email.toLowerCase().includes(query);
             const dateMatch = invoice.date.toLowerCase().includes(query);
             const statusMatch = invoice.status.toLowerCase().includes(query);
-    
-            
+
             console.log('ID Match:', idMatch);
             console.log('Name Match:', nameMatch);
             console.log('Email Match:', emailMatch);
             console.log('Date Match:', dateMatch);
             console.log('Status Match:', statusMatch);
-    
-    
+
             return idMatch || nameMatch || emailMatch || dateMatch || statusMatch;
         });
     }
-
 }
 
 export default Business;

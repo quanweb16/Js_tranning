@@ -5,6 +5,7 @@ class InvoicePresentation {
     constructor(business) {
         this.business = business;
         this.modal = new ModelPresentation(this.business);
+        
     }
 
     init() {
@@ -17,7 +18,7 @@ class InvoicePresentation {
         this.searchInputEl = document.getElementById('search-input');
         this.searchButtonEl = document.querySelector('.search-button');
         
-        
+        this.setupActionMenuToggle();
         this.addSelectAllEvent();       
         this.addDeleteAllEvent();       
         this.showInvoices();
@@ -32,19 +33,57 @@ class InvoicePresentation {
         this.addInvoice(data);
     }
 
+
+    setupActionMenuToggle() {
+        this.invoiceList.addEventListener('click', (event) => {
+            const dotsButton = event.target.closest('.dots');
+            if (dotsButton) {
+                // Đóng tất cả các menu trước khi mở một menu mới
+                this.invoiceList.querySelectorAll('.button-action').forEach(btn => btn.style.display = 'none');
+    
+                // Mở menu hành động tương ứng
+                const buttonAction = dotsButton.closest('.action').querySelector('.button-action');
+                buttonAction.style.display = 'block'; 
+            }
+        });
+        
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.action')) {
+                this.invoiceList.querySelectorAll('.button-action').forEach(btn => btn.style.display = 'none');
+            }
+        });
+    }
     addEditInvoiceEvent() {
-        this.invoiceList.addEventListener('click', (event) => {       
-            if (!event.target.closest(this.editInvoiceEl)) return;     
-            const id = event.target.closest('.table-item').getAttribute('data-id');       
+        this.invoiceList.addEventListener('click', (event) => {
+            if (!event.target.closest(this.editInvoiceEl)) return;
+    
+            const tableItem = event.target.closest('.table-item');
+            const id = tableItem.getAttribute('data-id');
+            
             this.openEditModal(id);
+    
+            // Tìm và ẩn action menu sau khi nhấn nút Edit
+            const buttonAction = tableItem.querySelector('.button-action');
+            if (buttonAction) {
+                buttonAction.style.display = 'none';
+            }
         });
     }
 
     addDeleteInvoiceEvent() {
         this.invoiceList.addEventListener('click', (event) => {
-            if (!event.target.closest(this.deleteInvoiceEl)) return;  
-            const id = event.target.closest('.table-item').getAttribute('data-id');  
-            this.openDeleteModal(id);  
+            if (!event.target.closest(this.deleteInvoiceEl)) return;
+    
+            const tableItem = event.target.closest('.table-item');
+            const id = tableItem.getAttribute('data-id');
+            
+            this.openDeleteModal(id);
+    
+            // Tìm và ẩn action menu sau khi nhấn nút Delete
+            const buttonAction = tableItem.querySelector('.button-action');
+            if (buttonAction) {
+                buttonAction.style.display = 'none';
+            }
         });
     }
 

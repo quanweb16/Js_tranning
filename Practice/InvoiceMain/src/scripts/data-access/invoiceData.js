@@ -17,16 +17,7 @@ class DataAccess {
     }
 
 
-    // Save
-
-    // Add
-    // -- Get invoice list
-    // -- Add item to list
-    // Save()
-
-    // Update
-
-    // Delete
+   
 }
 
 export default DataAccess;

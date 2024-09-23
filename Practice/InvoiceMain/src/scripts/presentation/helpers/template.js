@@ -10,11 +10,11 @@
                 <input type="checkbox" class="invoice-checkbox">
                 <div class="invoice">${data.id || ''}</div>
                 <div class="profile-pic">
-                    <img src="${data.profileImgSrc || 'path/to/default/image.png'}" alt="Profile Picture">
+                    <img src="images/anh1.jpg" alt="Profile Picture">
                     <div class="name">${data.name || 'No Name'}</div>
                 </div>
                 <div class="email">${data.email || 'noemail@example.com'}</div>
-                <div class="date"><i class="fas fa-calendar-alt"></i> ${data.date || ''}</div>
+                <div class="date"><i class="fas fa-calendar-alt"></i>  ${data.date || ''}</div>
                 <div class="status-1">${data.status || ''}</div>
                 <button class="special"><i class="fas fa-star"></i></button>
                 <div class="action">
@@ -28,8 +28,7 @@
             </li>`; //html
         };
         static buildInvoiceForm(){
-            return`<div class="create-invoice-container">
-            
+            return`<div class="create-invoice-container">           
             <div class="popup-form">
             <form class="form-invoice">
                 <div class="user-img">
@@ -79,7 +78,7 @@
                 </div>
                 <div class="form-group-edit">
                     <label for="invoice-id">Invoice Id</label>
-                    <input type="text" id="invoice-id" name="invoice-id" placeholder="#8181" required >
+                    <input type="text" id="invoice-id" name="invoice-id" placeholder="#8181" required readonly>
                 </div>
                 <div class="form-group-edit">
                     <label for="date">Date</label>
@@ -108,7 +107,7 @@
 
         static buildDeletePopup(){
             return ` <div class="confirm-delete-container">
-            <h2>Are you sure you want to delete this  invoice?</h2>
+            <h2>Are you sure you want to delete this invoice?</h2>
             <div class="confirm-buttons">
                 <button class="confirm-yes">Yes</button>
                 <button class="confirm-no">No</button>
@@ -117,7 +116,7 @@
         }
         static buildDeleteAllPopup(){
             return ` <div class="confirm-deleteAll-container">
-            <h2>Are you sure you want to delete these invoices?</h2>
+            <h2>Are you sure you want to delete these  invoices?</h2>
             <div class="confirm-select-buttons">
                 <button class="confirm-yes-all">Yes</button>
                 <button class="confirm-no-all">No</button>
