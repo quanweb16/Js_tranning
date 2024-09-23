@@ -24,6 +24,10 @@ class Business {
         if (index === -1) {            
             return false;
         }
+        if (!this.isValidEmail(updatedData.email)) {
+            alert('Invalid email: Email must contain at least one letter and be properly formatted.');
+            return false; 
+        }
     
         
         if (this.isDuplicateInvoice(invoices, updatedData) && updatedData.email !== invoices[index].email) {
@@ -66,37 +70,32 @@ class Business {
     }
     
     validateInvoiceData(data) {
-       
         if (!data.id) {
             alert('Invalid id');
             return false; 
         }
     
         
-        if (!data.name || data.name.length < 2) {
-            alert('Invalid name');
+        if (!this.isValidName(data.name)) {
+            alert('Invalid name: Name cannot contain numbers and must be at least 2 characters long.');
             return false;
         }
     
-        
         if (!data.email || !this.isValidEmail(data.email)) {
-            alert('Invalid email ');
+            alert('Invalid email: Email must contain at least one letter.');
             return false;
         }
     
-        
         if (!data.date) {
             alert('Date is required.');
             return false;
         }
     
-        
         if (!data.address) {
             alert('Address is required.');
             return false;
         }
     
-        
         if (!data.profileImgSrc || data.profileImgSrc === 'path/to/default/image.png') {
             alert('Profile image is required.');
             return false;
@@ -104,10 +103,14 @@ class Business {
     
         return true; 
     }
+    isValidName(name) {
+        const nameContainsNumbers = /\d/.test(name);
+        return name && name.length >= 2 && !nameContainsNumbers;
+    }
 
     isValidEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email); 
+        const re = /^[a-zA-Z][\w.-]*@[a-zA-Z][\w.-]+\.[a-zA-Z]{2,}$/;
+        return re.test(email);
     }
     
     isDuplicateId(invoices, id) {
