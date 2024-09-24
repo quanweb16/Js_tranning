@@ -5,7 +5,6 @@ class ModalPresentation {
     constructor(business) {
         this.business = business;  
     }
-
     init() {
         this.addInvoiceEl = document.querySelector('.addBtn');
         this.modalEl = document.querySelector('.content-Form'); 
@@ -20,7 +19,6 @@ class ModalPresentation {
         this.addInvoiceEvent(); 
         
     }
-
     renderModalAdd() { 
         this.modalEl.classList.add('overlay');
         this.modalEl.innerHTML += Template.buildInvoiceForm();  
@@ -36,9 +34,7 @@ class ModalPresentation {
     renderModalDeleteAll(){
         this.modalEl.classList.add('overlay');
         this.modalEl.innerHTML+= Template.buildDeleteAllPopup();
-    }
-    
-    
+    } 
     addInvoiceEvent() {
         this.addInvoiceEl.addEventListener('click', () => {
             this.openCreateInvoiceModal();
@@ -104,9 +100,7 @@ class ModalPresentation {
             location.reload(); 
         });
     }
-    
-    
-    
+       
     handleCreateInvoice() {
         const id = document.querySelector('#invoice-id').value;
         const date = document.querySelector('#date').value;
@@ -166,9 +160,6 @@ class ModalPresentation {
         this.closeModal(); 
         location.reload(); 
     }
-   
-
-    
 
     closeModal() {
         this.modalEl.innerHTML = '';

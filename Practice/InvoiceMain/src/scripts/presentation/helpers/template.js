@@ -2,9 +2,7 @@
         static buildInvoices(data = []) {
             return data.map(item => this.buildInvoiceItem(item)).join('');
         }
-
         static buildInvoiceItem(data) {
-            
             return `<li class="table-item" data-id="${data.id}" >
                 <div class="invoice-item">
                 <input type="checkbox" class="invoice-checkbox">

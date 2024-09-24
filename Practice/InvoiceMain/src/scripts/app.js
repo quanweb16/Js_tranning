@@ -3,17 +3,17 @@ import DataAccess from "./data-access/invoiceData.js";
 import InvoicePresentation from "./presentation/invoice.js";
 
 class App {
-    InvoicePresentation = null;
-    business = null;
-    dataAccess = null;
+    constructor() {
+        this.invoicePresentation = null;
+        this.business = null;
+        this.dataAccess = null;
+    }
 
     init() {
         this.dataAccess = new DataAccess();
         this.business = new Business(this.dataAccess);
-        this.InvoicePresentation= new InvoicePresentation(this.business);
-        this.InvoicePresentation.init();
+        this.invoicePresentation = new InvoicePresentation(this.business);
+        this.invoicePresentation.init();
     }
 }
-
-
 export default App;

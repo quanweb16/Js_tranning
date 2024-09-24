@@ -17,6 +17,39 @@ class Business {
         invoices = invoices.filter(invoice => invoice.id !== id);
         this.dataAccess.saveInvoices(invoices);
     }
+    
+    addInvoice(data) {
+        if (!this.isValidId(data.id)) {
+            return null; 
+        }
+    
+        const isValid = this.validateInvoiceData(data);
+        if (!isValid) {
+            return null; 
+        }
+        const existingInvoices = this.getInvoices();
+  
+        if (this.isDuplicateId(existingInvoices, data.id)) {
+            alert('Invoice with the same ID already exists');
+            return null; 
+        } 
+        if (this.isDuplicateInvoice(existingInvoices, data)) {
+            alert('Invoice with the same email already exists');
+            return null; 
+        }
+        if (!this.isValidDate(data.date)) {
+            return null; 
+        }
+    
+        if (!this.isValidAddress(data.address)) {
+            alert('Invalid address: Address must contain at least two letters.');
+            return null;
+        }
+        
+        const newInvoice = { ...data };
+        this.dataAccess.addInvoice(newInvoice);
+        return newInvoice;
+    }
     editInvoice(id, updatedData) {
         let invoices = this.getInvoices();
         const index = invoices.findIndex(invoice => invoice.id === id);
@@ -52,44 +85,8 @@ class Business {
         return true; 
     }
     
-
-    addInvoice(data) {
-        if (!this.isValidId(data.id)) {
-            return null; 
-        }
-    
-        const isValid = this.validateInvoiceData(data);
-        if (!isValid) {
-            return null; 
-        }
-        const existingInvoices = this.getInvoices();
-  
-        if (this.isDuplicateId(existingInvoices, data.id)) {
-            alert('Invoice with the same ID already exists');
-            return null; 
-        } 
-        if (this.isDuplicateInvoice(existingInvoices, data)) {
-            alert('Invoice with the same email already exists');
-            return null; 
-        }
-        if (!this.isValidDate(data.date)) {
-            return null; 
-        }
-        
-
-        if (!this.isValidAddress(data.address)) {
-            alert('Invalid address: Address must contain at least two letters.');
-            return null;
-        }
-        
-        const newInvoice = { ...data };
-        this.dataAccess.addInvoice(newInvoice);
-        return newInvoice;
-    }
-    
     validateInvoiceData(data) {
-        if (!data.id) {
-            alert('Invalid id');
+        if (!data.id) {           
             return false; 
         }
         if (!data.date) {
@@ -125,6 +122,22 @@ class Business {
         }
         return hasNumber;
     }
+    isValidDate(date) {
+        const inputDate = new Date(date);
+        const minDate = new Date('2020-01-01');
+        const currentDate = new Date();
+        if (inputDate < minDate) {
+            alert('Invalid date: Date must be after January 1, 2020.');
+            return false;
+        }
+    
+        if (inputDate > currentDate) {
+            alert('Invalid date: Date cannot be in the future.');
+            return false;
+        }
+    
+        return true;
+    }
     isValidName(name) {
         const nameContainsNumbers = /\d/.test(name);
         return name && name.length >= 2 && !nameContainsNumbers;
@@ -137,23 +150,6 @@ class Business {
     isValidAddress(address) {
         const re = /[a-zA-Z].*[a-zA-Z]/;
         return re.test(address); 
-    }
-    isValidDate(date) {
-        const inputDate = new Date(date);
-        const minDate = new Date('2020-01-01');
-        const currentDate = new Date();
-    
-        if (inputDate < minDate) {
-            alert('Invalid date: Date must be after January 1, 2020.');
-            return false;
-        }
-    
-        if (inputDate > currentDate) {
-            alert('Invalid date: Date cannot be in the future.');
-            return false;
-        }
-    
-        return true;
     }
     
     
