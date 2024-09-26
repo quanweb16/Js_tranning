@@ -17,108 +17,122 @@ class Business {
         invoices = invoices.filter(invoice => invoice.id !== id);
         this.dataAccess.saveInvoices(invoices);
     }
-    
     addInvoice(data) {
-        if (!this.isValidId(data.id)) {
-            return null; 
-        }
+        const validationResult = this.validateInvoiceData(data);
+    if (!validationResult.success) {
+        console.log(validationResult.errors);
+        document.getElementById('invoice-id-error').innerHTML = validationResult.errors.id || '';
+        document.getElementById('date-error').innerHTML = validationResult.errors.date || '';
+        document.getElementById('first-name-error').innerHTML = validationResult.errors.firstName || '';
+        document.getElementById('last-name-error').innerHTML = validationResult.errors.lastName || '';
+        document.getElementById('email-error').innerHTML = validationResult.errors.email || '';
+        document.getElementById('city-error').innerHTML = validationResult.errors.city || '';
+        document.getElementById('region-error').innerHTML = validationResult.errors.region || '';
+        return null; 
+    }
+    const invoices = this.getInvoices();
+    if (this.isDuplicateId(invoices, data.id)) {
+        document.getElementById('invoice-id-error').innerHTML = "ID already exists!";
+        return null; 
+    }
     
-        const isValid = this.validateInvoiceData(data);
-        if (!isValid) {
-            return null; 
-        }
-        const existingInvoices = this.getInvoices();
-  
-        if (this.isDuplicateId(existingInvoices, data.id)) {
-            alert('Invoice with the same ID already exists');
-            return null; 
-        } 
-        if (this.isDuplicateInvoice(existingInvoices, data)) {
-            alert('Invoice with the same email already exists');
-            return null; 
-        }
-        if (!this.isValidDate(data.date)) {
-            return null; 
-        }
-    
-        if (!this.isValidAddress(data.address)) {
-            alert('Invalid address: Address must contain at least two letters.');
-            return null;
-        }
-        
+    if (this.isDuplicateInvoice(invoices, data)) {
+        document.getElementById('email-error').innerHTML = "Email already exists!";
+        return null; 
+    }
+
         const newInvoice = { ...data };
         this.dataAccess.addInvoice(newInvoice);
         return newInvoice;
     }
     editInvoice(id, updatedData) {
+        const validationResult = this.validateInvoiceData(updatedData);
+    if (!validationResult.success) {
+        console.log(validationResult.errors);
+        document.getElementById('invoice-id-error').innerHTML = validationResult.errors.id || '';
+        document.getElementById('date-error').innerHTML = validationResult.errors.date || '';
+        document.getElementById('first-name-error').innerHTML = validationResult.errors.firstName || '';
+        document.getElementById('last-name-error').innerHTML = validationResult.errors.lastName || '';
+        document.getElementById('email-error').innerHTML = validationResult.errors.email || '';
+        document.getElementById('city-error').innerHTML = validationResult.errors.city || '';
+        document.getElementById('region-error').innerHTML = validationResult.errors.region || '';
+        return null; 
+    }
         let invoices = this.getInvoices();
-        const index = invoices.findIndex(invoice => invoice.id === id);
-        
+        const index = invoices.findIndex(invoice => invoice.id === id);       
         if (index === -1) {            
             return false;
         }
-        if (!this.isValidName(updatedData.name)) {
-            alert('Invalid name: Name cannot contain numbers.');
-            return false; 
-        }
-        if (!this.isValidEmail(updatedData.email)) {
-            alert('Invalid email: Email must contain at least one letter and be properly formatted.');
-            return false; 
-        }
-    
-        
         if (this.isDuplicateInvoice(invoices, updatedData) && updatedData.email !== invoices[index].email) {
-            alert('Invoice with the same email already exists');
-            return false; 
+            console.log(`Duplicate Email: ${updatedData.email}`);
+            document.getElementById('email-error').innerHTML = 'Email already exists!';
+            return null;
         }
-        if (!this.isValidDate(updatedData.date)) {
-            return false; 
-        }
-    
-        if (!this.isValidAddress(updatedData.address)) {
-            alert('Invalid address: Address must contain at least two letters.');
-            return false; 
-        }
-    
         invoices[index] = { ...invoices[index], ...updatedData };
         this.dataAccess.saveInvoices(invoices);
         return true; 
     }
     
     validateInvoiceData(data) {
-        if (!data.id) {           
-            return false; 
+        const errors = {};
+
+        if (!data.id) {
+            errors.id = "Invoice ID id is required";
+        } else if (!this.isValidId(data.id)) {
+            errors.id = "Invalid Invoice ID!";
         }
+    
+
         if (!data.date) {
-            alert('Date is required.');
-            return false;
-        }
-        if (!this.isValidName(data.name)) {
-            alert('Invalid name: Name cannot contain numbers and must be at least 2 characters long.');
-            return false;
+            errors.date = "Date id is required ";
+        } else if (!this.isValidDate(data.date)) {
+            errors.date = "Invalid date!";
         }
     
-        if (!data.email || !this.isValidEmail(data.email)) {
-            alert('Invalid email: Email must contain at least one letter.');
-            return false;
+
+        if (!data.email) {
+            errors.email = "Email is required";
+        } else if (!this.isValidEmail(data.email)) {
+            errors.email = "Invalid email!";
+        }
+
+        if (!data.firstName) {
+            errors.firstName = "First Name id is required";
+        } else if (!this.isValidFirstName(data.firstName)) {
+            errors.firstName = "Invalid first name!";
         }
     
-        if (!data.address) {
-            alert('Address is required.');
-            return false;
+
+        if (!data.lastName) {
+            errors.lastName = "Last Name id is required.";
+        } else if (!this.isValidLastName(data.lastName)) {
+            errors.lastName = "Invalid last name!";
         }
     
-        if (!data.profileImgSrc || data.profileImgSrc === 'path/to/default/image.png') {
-            alert('Profile image is required.');
-            return false;
+
+        if (!data.city) {
+            errors.city = "City id is required";
+        } else if (!this.isValidCity(data.city)) {
+            errors.city = "Invalid City!";
+        } 
+    
+
+        if (!data.region) {
+            errors.region = "Region id is required";
+        } else if (!this.isValidRegion(data.region)) {
+            errors.region = "Invalid region!";
         }
     
-        return true; 
+
+        if (Object.keys(errors).length > 0) {
+            return { success: false, errors };
+        }
+    
+        return { success: true };
     }
     isValidId(id) {
         const hasNumber = /\d/.test(id);
         if (!hasNumber) {
-            alert('Invalid ID: ID must contain at least one number.');
         }
         return hasNumber;
     }
@@ -127,29 +141,32 @@ class Business {
         const minDate = new Date('2020-01-01');
         const currentDate = new Date();
         if (inputDate < minDate) {
-            alert('Invalid date: Date must be after January 1, 2020.');
             return false;
         }
-    
         if (inputDate > currentDate) {
-            alert('Invalid date: Date cannot be in the future.');
             return false;
         }
-    
         return true;
     }
-    isValidName(name) {
-        const nameContainsNumbers = /\d/.test(name);
-        return name && name.length >= 2 && !nameContainsNumbers;
+    isValidFirstName(firstName) {
+        const nameContainsNumbers = /\d/.test(firstName);
+        return firstName && firstName.length >= 2 && !nameContainsNumbers;
     }
-
+    isValidLastName(lastName) {
+        const nameContainsNumbers = /\d/.test(lastName);
+        return lastName && lastName.length >= 2 && !nameContainsNumbers;
+    }
     isValidEmail(email) {
         const re = /^[a-zA-Z][\w.-]*@[a-zA-Z][\w.-]+\.[a-zA-Z]{2,}$/;
         return re.test(email);
     }
-    isValidAddress(address) {
+    isValidCity(city) {
         const re = /[a-zA-Z].*[a-zA-Z]/;
-        return re.test(address); 
+        return re.test(city); 
+    }
+    isValidRegion(region) {
+        const re = /[a-zA-Z].*[a-zA-Z]/;
+        return re.test(region); 
     }
     
     
@@ -174,18 +191,20 @@ class Business {
 
         return invoices.filter(invoice => {
             const idMatch = invoice.id.toLowerCase().includes(query);
-            const nameMatch = invoice.name.toLowerCase().includes(query);
+            const firstNameMatch = invoice.firstName.toLowerCase().includes(query);
+            const lastNameMatch = invoice.lastName.toLowerCase().includes(query);
             const emailMatch = invoice.email.toLowerCase().includes(query);
             const dateMatch = invoice.date.toLowerCase().includes(query);
             const statusMatch = invoice.status.toLowerCase().includes(query);
 
             console.log('ID Match:', idMatch);
-            console.log('Name Match:', nameMatch);
+            console.log('First Name Match:', firstNameMatch);
+            console.log('Last Name Match:', lastNameMatch);
             console.log('Email Match:', emailMatch);
             console.log('Date Match:', dateMatch);
             console.log('Status Match:', statusMatch);
 
-            return idMatch || nameMatch || emailMatch || dateMatch || statusMatch;
+            return idMatch || firstNameMatch ||lastNameMatch || emailMatch || dateMatch || statusMatch;
         });
     }
 }

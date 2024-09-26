@@ -8,8 +8,8 @@
                 <input type="checkbox" class="invoice-checkbox">
                 <div class="invoice">${data.id || ''}</div>
                 <div class="profile-pic">
-                    <img src="images/anh1.jpg" alt="Profile Picture">
-                    <div class="name">${data.name || 'No Name'}</div>
+                    <img src="./images/anh1.jpg" alt="Profile Picture">
+                    <div class="name">${data.firstName  || 'No Name'} ${data.lastName  || 'No Name'}</div>
                 </div>
                 <div class="email">${data.email || 'noemail@example.com'}</div>
                 <div class="date"><i class="fas fa-calendar-alt"></i>  ${data.date || ''}</div>
@@ -26,81 +26,123 @@
             </li>`; //html
         };
         static buildInvoiceForm(){
-            return`<div class="create-invoice-container">           
-            <div class="popup-form">
-            <form class="form-invoice">
-                <div class="user-img">
-                    <div class="image">
-                        <img src="" alt="add image" id="profile-img-preview">
-                        <input type="file" id="file-upload" name="file-upload">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="invoice-id">Invoice Id</label>
-                    <input type="text" id="invoice-id" name="invoice-id" placeholder="#8181" required>
-                </div>
-                <div class="form-group">
+            return`<div class="create-invoice-container">
+    <div class="popup-form">
+      <form class="form-invoice">
+        <div class="user-img">
+          <div class="image">
+            <img src="" alt="add image" id="profile-img-preview">
+            <input type="file" id="file-upload" name="file-upload">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="invoice-id">Invoice Id</label>
+          <input type="text" id="invoice-id" name="invoice-id" placeholder="#8181" required>
+          <span class="error-message" id="invoice-id-error"></span>
+        </div>
+        <div class="form-group">
                     <label for="date">Date</label>
                     <input type="date" id="date" name="date" required>
-                </div>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="QuanDoan" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="name@gmail.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address" placeholder="Name City" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn-invoice-create">Create Invoice</button>
-                </div>
-            </form>
-            <button class="close-popup">Close</button>
+                     <span class="error-message" id="date-error"></span>
+         </div>
+        <div class="form-group-inline">
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+            <span class="error-message" id="first-name-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+            <span class="error-message" id="last-name-error"></span>
+          </div>
         </div>
-    </div>`;
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="name@gmail.com" required>
+          <span class="error-message" id="email-error"></span>
+          
+        </div>
+        <div class="form-group-inline">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="City" required>
+            <span class="error-message" id="city-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="region">Region</label>
+            <input type="text" id="region" name="region" placeholder="Region" required>
+            <span class="error-message" id="region-error"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn-invoice-create">Create Invoice</button>
+        </div>
+      </form>
+     <button class="close-popup">
+    <i class="fas fa-times"></i>
+</button>
+    </div>
+  </div>`;
         };
         static buildInvoiceFormEdit(){
-            return`<div class="Edit-invoice-container">
-            
-            <div class="popup-form-edit">
-            <form class="form-invoice-edit">
-                <div class="user-img">
-                    <div class="image">
-                        <img src="" alt="add image" id="profile-img-preview">
-                        <input type="file" id="file-upload" name="file-upload">
-                    </div>
-                </div>
-                <div class="form-group-edit">
-                    <label for="invoice-id">Invoice Id</label>
-                    <input type="text" id="invoice-id" name="invoice-id" placeholder="#8181" required readonly>
-                </div>
-                <div class="form-group-edit">
-                    <label for="date">Date</label>
-                    <input type="date" id="date" name="date" required >
-                </div>
-                <div class="form-group-edit">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="QuanDoan" required >
-                </div>
-                <div class="form-group-edit">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="name@gmail.com" >
-                </div>
-                <div class="form-group-edit">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address" placeholder="Name City">
-                </div>
-                <div class="form-group-edit">
-                    <button type="submit" class="btn-invoice-edit">Edit Invoice</button>
-                </div>
-            </form>
-            <button class="close-popup">Close</button>
+            return` <div class="Edit-invoice-container">
+    <div class="popup-form-edit">
+      <form class="form-invoice-edit">
+        <div class="user-img">
+          <div class="image">
+            <img src="" alt="add image" id="profile-img-preview">
+            <input type="file" id="file-upload" name="file-upload">
+          </div>
         </div>
-    </div>`;
+        <div class="form-group-edit">
+          <label for="invoice-id">Invoice Id</label>
+          <input type="text" id="invoice-id" name="invoice-id" placeholder="#8181" required readonly>
+          <span class="error-message" id="invoice-id-error"></span>
+        </div>
+        <div class="form-group-edit">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
+                    <span class="error-message" id="date-error"></span>
+        </div>
+        <div class="form-group-inline">
+          <div class="form-group-edit">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+            <span class="error-message" id="first-name-error"></span>
+          </div>
+  
+          <div class="form-group-edit">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+            <span class="error-message" id="last-name-error"></span>
+          </div>
+        </div>
+        <div class="form-group-edit">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="name@gmail.com" required>
+          <span class="error-message" id="email-error"></span>
+        </div>
+        <div class="form-group-inline">
+          <div class="form-group-edit">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="City" required>
+            <span class="error-message" id="city-error"></span>
+          </div>
+          <div class="form-group-edit">
+            <label for="region">Region</label>
+            <input type="text" id="region" name="region" placeholder="Region" required>
+            <span class="error-message" id="region-error"></span>
+          </div>
+        </div>
+        <div class="form-group-edit">
+          <button type="submit" class="btn-invoice-edit">Edit Invoice</button>
+        </div>
+      </form>
+      <button class="close-popup-edit">
+    <i class="fas fa-times"></i></button>
+    </div>
+  </div>`;
         };
 
         static buildDeletePopup(){
@@ -121,6 +163,30 @@
             </div>
         </div>`;
         }
+        static notificationPopup(){
+            return ` <div class="notificationDeleteAll-container">
+            <h2>Please select at least one invoice to delete!</h2>
+            <div class="confirm-buttons">
+                <button class="confirm-yes">Yes</button>
+            </div>
+        </div>`;
+        }
+        static notificationCreate(){
+          return ` <div class="notificationCreate-container">
+          <h2>Create successfully</h2>
+          <div class="confirm-buttons-success">
+              <button class="confirm-ok-success">OK</button>
+          </div>
+      </div>`;
+      }
+      static notificationEdit(){
+        return ` <div class="notificationEdit-container">
+        <h2>Edit successfully</h2>
+        <div class="confirm-buttons-edit-success">
+            <button id="confirm-edit-success" class="confirm-edit-success">OK</button>
+        </div>
+    </div>`;
+    }
     };
 
     export default Template;

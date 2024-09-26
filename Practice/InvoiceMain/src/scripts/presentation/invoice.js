@@ -83,7 +83,7 @@ class InvoicePresentation {
             this.deleteAllEl.addEventListener('click', () => {
                 const selectedCheckboxes = this.invoiceList.querySelectorAll('.invoice-checkbox:checked');
                 if (selectedCheckboxes.length === 0) {
-                    alert('Please select at least one invoice to delete.');
+                    this.modal.openNotificationDelete();
                     return; 
                 }
                 this.modal.openDeleteAllInvoiceModal(); 
