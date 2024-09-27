@@ -1,18 +1,18 @@
-import Business from "./business/invoiceProcess.js";
+import InvoiceService from "./business/invoiceService.js";
 import DataAccess from "./data-access/invoiceData.js";
 import InvoicePresentation from "./presentation/invoice.js";
 
 class App {
     constructor() {
         this.invoicePresentation = null;
-        this.business = null;
+        this.InvoiceService = null;
         this.dataAccess = null;
     }
 
     init() {
         this.dataAccess = new DataAccess();
-        this.business = new Business(this.dataAccess);
-        this.invoicePresentation = new InvoicePresentation(this.business);
+        this.InvoiceService = new InvoiceService(this.dataAccess);
+        this.invoicePresentation = new InvoicePresentation(this.InvoiceService);
         this.invoicePresentation.init();
     }
 }

@@ -2,8 +2,8 @@
 import Template from './helpers/template.js';
 
 class ModalPresentation {
-    constructor(business) {
-        this.business = business;  
+    constructor(InvoiceService) {
+        this.InvoiceService = InvoiceService;  
     }
     init() {
         this.addInvoiceEl = document.querySelector('.addBtn');
@@ -142,12 +142,12 @@ class ModalPresentation {
             profileImgSrc
         };       
     
-        const result = this.business.addInvoice(invoiceData); 
+        const result = this.InvoiceService.addInvoice(invoiceData); 
         return result; 
     }
     handleEditInvoices() {
-        const id = document.querySelector('#invoice-id').value; 
-        const data = this.business.getInvoiceById(id);
+        
+        const id = document.querySelector('#invoice-id').value;
         const date = document.querySelector('#date').value;
         const firstName = document.querySelector('#first-name').value;
         const lastName = document.querySelector('#last-name').value;
@@ -155,7 +155,7 @@ class ModalPresentation {
         const city = document.querySelector('#city').value;
         const region = document.querySelector('#region').value;
         const profileImgSrc = document.getElementById('profile-img-preview').src;
-    
+        const data = this.InvoiceService.getInvoiceById(id);
         const updatedInvoice = {
             ...data,
             date,
@@ -166,12 +166,12 @@ class ModalPresentation {
             region,
             profileImgSrc
         };     
-        const result = this.business.editInvoice(id, updatedInvoice);     
+        const result = this.InvoiceService.editInvoice(id, updatedInvoice);     
         return result; 
     }
     handleDeleteInvoice(id) {
         try {
-            this.business.deleteInvoice(id);  
+            this.InvoiceService.deleteInvoice(id);  
             this.closeModal();
             location.reload(); 
         } catch (error) {
@@ -182,7 +182,7 @@ class ModalPresentation {
         const selectedCheckboxes = document.querySelectorAll('.invoice-checkbox:checked');
         selectedCheckboxes.forEach(checkbox => {
             const id = checkbox.closest('.table-item').getAttribute('data-id');
-            this.business.deleteInvoice(id);
+            this.InvoiceService.deleteInvoice(id);
         });
         this.closeModal(); 
         location.reload(); 

@@ -1,4 +1,4 @@
-class Business {
+class InvoiceService {
     constructor(dataAccess) {
         this.dataAccess = dataAccess;
     }
@@ -209,4 +209,4 @@ class Business {
     }
 }
 
-export default Business;
+export default InvoiceService;
