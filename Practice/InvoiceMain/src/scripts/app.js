@@ -1,5 +1,5 @@
-import InvoiceService from "./business/invoiceService.js";
-import DataAccess from "./data-access/invoiceData.js";
+import InvoiceService from "./business-layer/invoiceService.js";
+import DataAccess from "./data-access-layer/invoiceData.js";
 import InvoicePresentation from "./presentation/invoice.js";
 
 class App {

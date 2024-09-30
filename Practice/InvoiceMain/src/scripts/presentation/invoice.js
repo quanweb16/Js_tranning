@@ -6,12 +6,13 @@ class InvoicePresentation {
         this.InvoiceService = InvoiceService;
         this.modal = new ModelPresentation(this.InvoiceService);
     }
+
     init() {
         // Initial elements
         this.invoiceList = document.querySelector('.invoices .invoice-list .table-list');
         this.editInvoiceEl = '.edit-btn';
         this.deleteInvoiceEl = '.delete-btn';
-        this.selectAllEl = document.getElementById('checkbox'); 
+        this.selectAllEl = document.getElementById('checkbox-all'); 
         this.deleteAllEl = document.querySelector('.delete-all');
         this.searchInputEl = document.getElementById('search-input');
         this.searchButtonEl = document.querySelector('.search-button');
@@ -22,13 +23,14 @@ class InvoicePresentation {
         this.addEditInvoiceEvent();
         this.addDeleteInvoiceEvent();
         this.addSearchEvent();
-        this.modal.init();
-        
+        this.modal.init();  
     }  
+
     showInvoices() {
         const data = this.InvoiceService.getInvoices();
         this.addInvoice(data);
     }
+    
     setupActionMenuToggle() {
         this.invoiceList.addEventListener('click', (event) => {
             const dotsButton = event.target.closest('.dots');
@@ -45,6 +47,7 @@ class InvoicePresentation {
             }
         });
     }
+
     addEditInvoiceEvent() {
         this.invoiceList.addEventListener('click', (event) => {
             if (!event.target.closest(this.editInvoiceEl)) return;   
@@ -57,6 +60,7 @@ class InvoicePresentation {
             }
         });
     }
+
     addDeleteInvoiceEvent() {
         this.invoiceList.addEventListener('click', (event) => {
             if (!event.target.closest(this.deleteInvoiceEl)) return;
@@ -79,7 +83,6 @@ class InvoicePresentation {
     }
    
     addDeleteAllEvent() {
-        if (this.deleteAllEl) { 
             this.deleteAllEl.addEventListener('click', () => {
                 const selectedCheckboxes = this.invoiceList.querySelectorAll('.invoice-checkbox:checked');
                 if (selectedCheckboxes.length === 0) {
@@ -88,7 +91,6 @@ class InvoicePresentation {
                 }
                 this.modal.openDeleteAllInvoiceModal(); 
             });
-        }
     }
     
     addSearchEvent() {
@@ -102,6 +104,7 @@ class InvoicePresentation {
             }
         });
     }
+
     performSearch() {
         const query = this.searchInputEl.value;
         console.log('Search Query:', query);      
@@ -109,21 +112,26 @@ class InvoicePresentation {
         console.log('Filtered Invoices:', filteredInvoices);      
         this.displaySearchInvoices(filteredInvoices);  
     }
+
     displaySearchInvoices(filteredData = null) {
         const data = filteredData || this.InvoiceService.getInvoices(); 
         this.addInvoice(data);
     }   
+
     openDeleteAllModal(){
         this.modal.openDeleteAllInvoiceModal();
     }
+
     openDeleteModal(id) {
         const data = this.InvoiceService.getInvoiceById(id);
         this.modal.openDeleteInvoiceModal(data);
     }
+
     openEditModal(id) {
         const data = this.InvoiceService.getInvoiceById(id);
         this.modal.openEditInvoiceModal(data);
     }
+
     addInvoice(data) {
         const template = Template.buildInvoices(data);   
         this.invoiceList.innerHTML = template;

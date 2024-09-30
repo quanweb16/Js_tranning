@@ -7,12 +7,11 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="styles/base/base.css">
   <link rel="stylesheet" href="styles/layout/layout.css">
   <link rel="stylesheet" href="styles/Pages/pages.css">
-  <link rel="stylesheet" href="styles/Vendors/vendors.css">
-
+  <link rel="stylesheet" href="styles/Vendors/vendors.css"> 
+ 
   <title>Invoices</title>
 </head>
 
@@ -20,17 +19,16 @@
   <!-- Sidebar -->
   <aside class="sidebar">
     <div class="logo">
-      <img src="./asset/logo.jpg" alt="">
-    </div>
+      <img src="./assets/logo.jpg" alt="Company Logo">
     </div>
     <ul class="menu-list">
       <li class="menu-item active">
         <i class="fi fi-rr-apps"></i>
-        <span>Dasboard</span>
+        <span>Dashboard</span>
       </li>
       <li class="menu-item">
         <i class="fi fi-rr-stats"></i>
-        <span>Analystics</span>
+        <span>Analytics</span>
       </li>
       <li class="menu-item">
         <i class="fi fi-rr-file-invoice-dollar"></i>
@@ -46,15 +44,15 @@
       </li>
       <li class="menu-item">
         <i class="fi fi-rr-comment-dots"></i>
-        <span>Messeages</span>
+        <span>Messages</span>
       </li>
       <li class="menu-item">
         <i class="fi fi-rs-bell-notification-social-media"></i>
-        <span>Notification</span>
+        <span>Notifications</span>
       </li>
       <li class="menu-item">
         <i class="fi fi-rr-settings"></i>
-        <span>Setting</span>
+        <span>Settings</span>
       </li>
     </ul>
     <div class="user-info">
@@ -65,67 +63,72 @@
         <div class="user-name">John Doe</div>
         <div class="user-plan">Free Account</div>
       </div>
+    </div>
   </aside>
 
   <!-- Wrapper -->
   <main class="main-content">
-    <div class="invoices">
-      <div class="title">
+    <section class="invoices">
+      <header class="title">
         <h3>Invoice List</h3>
         <div class="search-container">
           <input type="text" class="search-input" id="search-input" placeholder="Search">
-          <button class="search-button">
+          <button class="search-button" aria-label="Search">
             <i class="fa fa-search"></i>
           </button>
         </div>
         <div class="addButton">
           <button class="addBtn">+ Add New</button>
         </div>
-      </div>
+      </header>
+
       <div class="invoice-list table">
         <div class="table-head">
           <div class="header-item checkbox-header">
-            <input type="checkbox" id="checkbox" class="checkbox">
+            <input type="checkbox" id="checkbox-all" class="checkbox" aria-label="Select All Invoices">
           </div>
-          <div class="header-item invoice-header">Invoice Id <span class="icon"></span></div>
+          <div class="header-item invoice-header">Invoice ID <span class="icon"></span></div>
           <div class="header-item name-header">Name <span class="icon"></span></div>
           <div class="header-item email-header">Email <span class="icon"></span></div>
           <div class="header-item date-header">Date <span class="icon"></span></div>
           <div class="header-item status-header">Status <span class="icon"></span></div>
           <div class="header-item trash-header">
-            <button class="delete-all"><i class="fas fa-trash"></i></button>
+            <button class="delete-all" aria-label="Delete All Invoices"><i class="fas fa-trash"></i></button>
           </div>
         </div>
+
         <ul class="table-list">
           <li class="table-item">
             <div class="invoice-item">
-              <input type="checkbox" class="invoice-checkbox">
+              <input type="checkbox" class="invoice-checkbox" aria-label="Select Invoice INV001">
               <div class="invoice">INV001</div>
               <div class="profile-pic">
-                <img src="./images/anh1.jpg" alt="Profile Picture">
+                <img src="./assets/anh1.jpg" alt="Profile Picture of John Doe">
                 <div class="name">John Doe</div>
               </div>
               <div class="email">john@example.com</div>
-              <div class="date"><i class="fas fa-calendar-alt"></i>2024-09-15</div>
+              <div class="date"><i class="fas fa-calendar-alt"></i> 2024-09-15</div>
               <div class="status-1">Pending</div>
-              <button class="special"><i class="fas fa-star"></i></button>
+              <button class="special" aria-label="Mark as Favorite"><i class="fas fa-star"></i></button>
               <div class="action">
-                <div class="dots">•••</div>
+                <div class="dots" aria-haspopup="true" aria-expanded="false">•••</div>
                 <div class="button-action">
-                  <div class="edit-btn">Edit</div>
-                  <div class="delete-btn">Delete</div>
+                  <div class="edit-btn" role="button" aria-label="Edit Invoice INV001">Edit</div>
+                  <div class="delete-btn" role="button" aria-label="Delete Invoice INV001">Delete</div>
                 </div>
               </div>
             </div>
           </li>
-          <!-- Các mục hóa đơn khác -->
+          <!-- Add additional invoice items here -->
         </ul>
       </div>
-    </div>
-    <div class="content-Form">
+    </section>
 
+    <div class="content-Form">
+      <!-- Popup form or additional content can be added here -->
     </div>
   </main>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="./scripts/main.js" type="module"></script>

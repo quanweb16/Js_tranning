@@ -329,12 +329,48 @@
   }
   
   /* Báo lỗi */
-  .error-message {
-    color: red;
+  .error-message-id {
+    color: rgb(251, 0, 0);
     font-size: 12px;
     margin-top: 5px;
     display: block;
   }
+  .error-message-date {
+    color: rgb(251, 0, 0);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+  }
+  .error-message-first-name {
+    color: rgb(251, 0, 0);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+  }
+  .error-message-last-name {
+    color: rgb(251, 0, 0);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+  }
+  .error-message-email{
+    color: rgb(251, 0, 0);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+  }
+  .error-message-city {
+    color: rgb(251, 0, 0);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+  }.error-message-region {
+    color: rgb(251, 0, 0);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+  }
+  
   
   /* Nút đóng popup */
   .close-popup {
@@ -450,13 +486,7 @@
   }
   
   /* Báo lỗi */
-  .error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-    
-    display: block;
-  }
+  
   
   /* Nút đóng popup */
   .close-popup-edit {

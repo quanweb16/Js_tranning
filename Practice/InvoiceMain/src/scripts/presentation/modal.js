@@ -9,41 +9,49 @@ class ModalPresentation {
         this.addInvoiceEl = document.querySelector('.addBtn');
         this.modalEl = document.querySelector('.content-Form'); 
         this.addInvoiceEvent(); 
-        
     }
+
     renderNotificationEdit(){
         this.modalEl.classList.add('overlay');
         this.modalEl.innerHTML += Template.notificationEdit();
     }
+
     renderNotificationCreate(){
         this.modalEl.classList.add('overlay');
         this.modalEl.innerHTML += Template.notificationCreate();
     }
+
     renderNotification (){
        this.modalEl.classList.add('overlay');
        this.modalEl.innerHTML += Template.notificationPopup();
     }
+
     renderModalAdd() { 
         this.modalEl.classList.add('overlay');
         this.modalEl.innerHTML += Template.buildInvoiceForm();  
     }
+
     renderModalEdit(){
         this.modalEl.classList.add('overlay');
         this.modalEl.innerHTML += Template.buildInvoiceFormEdit();
     }
+
     renderModalDelete(){
         this.modalEl.classList.add('overlay');
         this.modalEl.innerHTML+= Template.buildDeletePopup();
     }
+
     renderModalDeleteAll(){
         this.modalEl.classList.add('overlay');
         this.modalEl.innerHTML+= Template.buildDeleteAllPopup();
     } 
+
     addInvoiceEvent() {
         this.addInvoiceEl.addEventListener('click', () => {
             this.openCreateInvoiceModal();
         });
     }
+
     openDeleteInvoiceModal(data) {      
         this.renderModalDelete();
         document.querySelector('.confirm-yes').addEventListener('click', (event) => {
@@ -54,6 +62,7 @@ class ModalPresentation {
             this.closeModal();
         });
     }
+
     openDeleteAllInvoiceModal(data) {      
         this.renderModalDeleteAll();
         document.querySelector('.confirm-yes-all').addEventListener('click', (event) => {
@@ -64,6 +73,7 @@ class ModalPresentation {
             this.closeModal();
         });
     }
+
     openNotificationDelete(){
         this.renderNotification();
         document.querySelector('.confirm-yes').addEventListener('click',()=>{
@@ -71,6 +81,7 @@ class ModalPresentation {
         });
 
     }
+
     openNotificationCreate(){
         this.renderNotificationCreate()
         document.querySelector('.confirm-ok-success').addEventListener('click',()=>{
@@ -78,6 +89,7 @@ class ModalPresentation {
             location.reload(); 
         });
     }
+
     openNotificationEdit(){
         this.renderNotificationEdit()
         document.getElementById('confirm-edit-success').addEventListener('click',()=>{
@@ -85,8 +97,11 @@ class ModalPresentation {
             location.reload(); 
         });
     }
+
     openCreateInvoiceModal() {        
         this.renderModalAdd();
+        const id = Date.now(); 
+        document.querySelector('#invoice-id').value = id; 
         document.querySelector('.btn-invoice-create').addEventListener('click', (event) => {
             event.preventDefault(); 
             const result = this.handleCreateInvoice();
@@ -98,8 +113,10 @@ class ModalPresentation {
             this.closeModal();
         });
     }
+
     openEditInvoiceModal(data) {
         this.renderModalEdit(); 
+        console.log('Data for editing:', data); 
         document.querySelector('#invoice-id').value = data.id;
         document.querySelector('#date').value = data.date;
         document.querySelector('#first-name').value = data.firstName;
@@ -116,8 +133,7 @@ class ModalPresentation {
             }
         });  
         document.querySelector('.close-popup-edit').addEventListener('click', () => {
-            this.closeModal();
-             
+            this.closeModal();  
         });
     }
        
@@ -145,8 +161,8 @@ class ModalPresentation {
         const result = this.InvoiceService.addInvoice(invoiceData); 
         return result; 
     }
+    
     handleEditInvoices() {
-        
         const id = document.querySelector('#invoice-id').value;
         const date = document.querySelector('#date').value;
         const firstName = document.querySelector('#first-name').value;
@@ -169,6 +185,7 @@ class ModalPresentation {
         const result = this.InvoiceService.editInvoice(id, updatedInvoice);     
         return result; 
     }
+
     handleDeleteInvoice(id) {
         try {
             this.InvoiceService.deleteInvoice(id);  
@@ -178,6 +195,7 @@ class ModalPresentation {
             console.error('Error deleting invoice:', error.message);
         }
     }
+    
     handleDeleteAllInvoices(id) {
         const selectedCheckboxes = document.querySelectorAll('.invoice-checkbox:checked');
         selectedCheckboxes.forEach(checkbox => {
