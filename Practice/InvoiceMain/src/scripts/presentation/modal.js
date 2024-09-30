@@ -79,7 +79,6 @@ class ModalPresentation {
         document.querySelector('.confirm-yes').addEventListener('click',()=>{
             this.closeModal();
         });
-
     }
 
     openNotificationCreate(){
