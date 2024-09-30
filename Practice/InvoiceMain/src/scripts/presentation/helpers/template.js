@@ -10,7 +10,7 @@ class Template {
                   <input type="checkbox" class="invoice-checkbox">
                   <div class="invoice">${data.id || ''}</div>
                   <div class="profile-pic">
-                      <img src="./assets/anh1.jpg" alt="Profile Picture">
+                      <img src="./assets/avatar.jpg" alt="Profile Picture">
                       <div class="name">${data.firstName || 'No Name'} ${data.lastName || 'No Name'}</div>
                   </div>
                   <div class="email">${data.email || 'noemail@example.com'}</div>
