@@ -16,7 +16,6 @@ class DataAccess {
     saveInvoices(invoices) {
         localStorage.setItem('invoices', JSON.stringify(invoices));
     }
-
 }
 
 export default DataAccess;
