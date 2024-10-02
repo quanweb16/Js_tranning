@@ -1,14 +1,16 @@
-import ValidateInvoices from "./validateInvoices";
-import DisplayErrorMessages from "../display/displayErrorMessages";
+import ValidateInvoices from "../../validation/invoice/validateInvoices";
+import DisplayErrorMessages from "../../presentation/helpers/display/displayErrorMessages";
+import Invoice from "../../data/invoice";
+
 class InvoiceBusiness {
-  constructor(InvoiceData) {
-    this.DataAccess = InvoiceData;
-    this.ValidateInvoices = new ValidateInvoices();
-    this.DisplayErrorMessages = new DisplayErrorMessages();
+  constructor(invoiceDataAccess) {
+    this.dataAccess = invoiceDataAccess;
+    this.validateInvoices = new ValidateInvoices();
+    this.displayErrorMessages = new DisplayErrorMessages();
   }
 
   getInvoices() {
-    return this.DataAccess.getInvoices();
+    return this.dataAccess.getInvoices();
   }
 
   getInvoiceById(id) {
@@ -19,35 +21,38 @@ class InvoiceBusiness {
   deleteInvoice(id) {
     let invoices = this.getInvoices();
     invoices = invoices.filter((invoice) => invoice.id !== id);
-    this.DataAccess.saveInvoices(invoices);
+    this.dataAccess.saveInvoices(invoices);
   }
 
   addInvoice(data) {
     const invoices = this.getInvoices();
-    const validationResult = this.ValidateInvoices.validateInvoiceData(
-      data,
-      invoices
-    );
+    const validationResult = this.validateInvoices.validateInvoiceData(data, invoices);
+    
     if (!validationResult.success) {
-      this.DisplayErrorMessages.showErrorsCreateInvoice(
-        validationResult.errors
-      );
+      this.displayErrorMessages.showErrorsCreateInvoice(validationResult.errors);
       return null;
     }
 
-    const newInvoice = { ...data };
-    this.DataAccess.addInvoice(newInvoice);
+    const newInvoice = new Invoice(
+      data.id,
+      data.firstName,
+      data.lastName,
+      data.email,
+      data.city,
+      data.region,
+      data.date
+    );
+
+    this.dataAccess.addInvoice(newInvoice);
     return newInvoice;
   }
 
   editInvoice(id, updatedData) {
     const invoices = this.getInvoices();
-    const validationResult = this.ValidateInvoices.validateInvoiceData(
-      updatedData,
-      invoices
-    );
+    const validationResult = this.validateInvoices.validateInvoiceData(updatedData, invoices);
+    
     if (!validationResult.success) {
-      this.DisplayErrorMessages.showErrorsEditInvoice(validationResult.errors);
+      this.displayErrorMessages.showErrorsEditInvoice(validationResult.errors);
       return null;
     }
 
@@ -57,7 +62,7 @@ class InvoiceBusiness {
     }
 
     invoices[index] = { ...invoices[index], ...updatedData };
-    this.DataAccess.saveInvoices(invoices);
+    this.dataAccess.saveInvoices(invoices);
     return true;
   }
 
@@ -65,12 +70,10 @@ class InvoiceBusiness {
     const invoices = this.getInvoices();
 
     if (!Array.isArray(invoices)) {
-      console.error("Invoices data is not initialized correctly.");
       return [];
     }
 
     query = query.toLowerCase().trim();
-    console.log("Search Query:", query);
 
     return invoices.filter((invoice) => {
       const idMatch = invoice.id.toLowerCase().includes(query);

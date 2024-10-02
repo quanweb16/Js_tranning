@@ -1,9 +1,9 @@
 // file modal.js
-import Template from "./helpers/template.js";
+import Template from "./helpers/template/template.js";
 
 class ModalPresentation {
-  constructor(InvoiceBusiness) {
-    this.InvoiceBusiness = InvoiceBusiness;
+  constructor(invoiceBusiness) {
+    this.invoiceBusiness = invoiceBusiness;
   }
   init() {
     this.addInvoiceEl = document.querySelector(".add-invoice-btn");
@@ -169,7 +169,7 @@ class ModalPresentation {
       region,
     };
 
-    const result = this.InvoiceBusiness.addInvoice(invoiceData);
+    const result = this.invoiceBusiness.addInvoice(invoiceData);
     return result;
   }
 
@@ -181,7 +181,7 @@ class ModalPresentation {
     const email = document.querySelector("#email").value;
     const city = document.querySelector("#city").value;
     const region = document.querySelector("#region").value;
-    const data = this.InvoiceBusiness.getInvoiceById(id);
+    const data = this.invoiceBusiness.getInvoiceById(id);
     const updatedInvoice = {
       ...data,
       date,
@@ -191,13 +191,13 @@ class ModalPresentation {
       city,
       region,
     };
-    const result = this.InvoiceBusiness.editInvoice(id, updatedInvoice);
+    const result = this.invoiceBusiness.editInvoice(id, updatedInvoice);
     return result;
   }
 
   handleDeleteInvoice(id) {
     try {
-      this.InvoiceBusiness.deleteInvoice(id);
+      this.invoiceBusiness.deleteInvoice(id);
       this.closeModal();
       location.reload();
     } catch (error) {
@@ -211,7 +211,7 @@ class ModalPresentation {
     );
     selectedCheckboxes.forEach((checkbox) => {
       const id = checkbox.closest(".table-item").getAttribute("data-id");
-      this.InvoiceBusiness.deleteInvoice(id);
+      this.invoiceBusiness.deleteInvoice(id);
     });
     this.closeModal();
     location.reload();
