@@ -69,11 +69,6 @@ class InvoicePresentation {
       }
     });
   }
-  deleteInvoice(id) {
-    const invoices = this.getInvoices();
-    const updatedInvoices = invoices.filter(invoice => invoice.id !== id);
-    this.saveInvoices(updatedInvoices); 
-  }
 
   addDeleteInvoiceEvent() {
     this.invoiceList.addEventListener('click', (event) => {
@@ -86,8 +81,7 @@ class InvoicePresentation {
             buttonAction.style.display = 'none';
         }
     });
-}
-
+  }
 
   addSelectAllEvent() {
     this.selectAllEl.addEventListener("change", (event) => {
