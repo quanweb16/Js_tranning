@@ -76,25 +76,17 @@ class InvoicePresentation {
   }
 
   addDeleteInvoiceEvent() {
-    this.invoiceList.addEventListener("click", (event) => {
-      if (!event.target.closest(this.deleteInvoiceEl)) return;
-      const tableItem = event.target.closest(".table-item");
-      const id = tableItem.getAttribute("data-id");
-      this.InvoiceBusiness.deleteInvoice(id); 
-      const query = this.searchInputEl.value.trim();
-      if (query) {
-        const filteredInvoices = this.InvoiceBusiness.searchInvoices(query);
-        this.displaySearchInvoices(filteredInvoices);
-      } else {
-        this.showInvoices();
-      }
-
-      const buttonAction = tableItem.querySelector(".button-action");
-      if (buttonAction) {
-        buttonAction.style.display = "none";
-      }
+    this.invoiceList.addEventListener('click', (event) => {
+        if (!event.target.closest(this.deleteInvoiceEl)) return;
+        const tableItem = event.target.closest('.table-item');
+        const id = tableItem.getAttribute('data-id');           
+        this.openDeleteModal(id);
+        const buttonAction = tableItem.querySelector('.button-action');
+        if (buttonAction) {
+            buttonAction.style.display = 'none';
+        }
     });
-  }
+}
 
   addSelectAllEvent() {
     this.selectAllEl.addEventListener("change", (event) => {
