@@ -8,6 +8,7 @@
 
   min-height: 100vh;
 }
+
 .overlay{
   background-color:  rgba(164, 161, 161, 0.6);
   position: fixed;
@@ -21,11 +22,13 @@
   border-radius: 10px;
   
 }
-.addButton{
+
+.button-add{
   position: absolute;
   left: 90%;
 }
-.addButton .addBtn{
+
+.button-add .add-invoice-btn{
   background-color: #3A36DB;
   border-radius: 10px;
   border: none;
@@ -37,14 +40,17 @@
   padding: 0 25px;
   transition: all 200ms;
 }
-.addButton .addBtn:hover{
+
+.button-add .add-invoice-btn:hover{
   transform: scale(1.05);
 }
+
 .search-container{
   position: absolute;
   display: flex;
   left: 70%;
 }
+
 .search-container .search-input{
   flex: 1;
   border: none;
@@ -53,6 +59,7 @@
   border-radius: 10px;
   padding: 15px 10px;
 }
+
 .search-container .search-button{
   background-color: transparent;
   border: none;
@@ -82,6 +89,7 @@
   padding: 10px;
   border-radius: 5px;
 }
+
 .icon {
   display: inline-block;
   width: 20px; 
@@ -131,9 +139,11 @@
   cursor: pointer;
   color: #4d4b4b;
 }
+
 .delete-all:hover{
   color: #1565e7;
 }
+
 .table-head, .table-item {
   display: grid;
   grid-template-columns: 40px 1fr 1fr 1fr 1fr 1fr 40px;
@@ -151,7 +161,6 @@
   font-size: 12px;
 }
 
-
 .checkbox-header, .invoice-checkbox {
   justify-self: center;
 }
@@ -161,11 +170,12 @@
 .status-header, .status-1, .trash-header, .dots {
   justify-self: start;
 }
+
 .profile-pic{
-  margin-left: -20px;
+  margin-left: -10px;
 }
+
 .status-1{
-  
   padding: 15px 25px;
   bottom: 12%;
   border-radius: 19px; 
@@ -173,6 +183,7 @@
   background-color: #e8f6f3;
   margin-left: -20px;
 }
+
 .special{
   position: absolute;
   left: 87%;
@@ -182,6 +193,7 @@
   
 
 }
+
 .date i{
   color: #00b894;
   margin-right: 10px;
@@ -192,13 +204,6 @@
   align-items: center;
 }
 
-.invoice-item .profile-pic img {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  border-radius: 50%;
-}
-
 .invoice-item .star, .invoice-item .dots {
   justify-self: center;
 }
@@ -207,6 +212,20 @@
   position: relative;
 }
 
+.dots {
+  font-family: Arial, sans-serif; 
+  color: #7c7c7c; 
+  text-align: center; 
+  font-size: 18px;
+}
+
+.dots:hover{
+  color: #0077ff;
+}
+
+.dots::before {
+  content: '•••'; 
+}
 
 .button-action {
   display: none;
@@ -242,7 +261,6 @@
   display: block;
 }
 
-
 .button-action .edit-btn {
   color: #3A36DB;
   background-color: #F1F4FA;
@@ -252,16 +270,18 @@
   color: #FF69B4 ;
   background-color: #fdd9ea;
 }
+
 .button-action .edit-btn:hover {
   color: #ffffff;
   background-color: #598cf3;
 }
+
 .button-action .delete-btn:hover {
   color: #ffffff ;
   background-color: #f379b2;
 }
+
 /*create form*/
-/* Đặt form ở giữa màn hình */
 .create-invoice-container {
     position: fixed;
     top: 0;
@@ -282,20 +302,19 @@
     max-width: 600px; /* Giới hạn kích thước tối đa */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     position: relative;
+    font-size: 15px;
   }
   
-  /* Sắp xếp phần tử trong form */
   .form-invoice {
     display: flex;
     flex-direction: column;
     gap: 15px;
   }
   
-  /* Sắp xếp thành hàng ngang cho First Name / Last Name và City / Region */
   .form-group-inline {
     display: flex;
     justify-content: space-between;
-    gap: 15px; /* Khoảng cách giữa các phần tử */
+    gap: 15px; 
   }
   
   .form-group-inline .form-group {
@@ -315,64 +334,64 @@
     border-radius: 5px;
     box-sizing: border-box;
   }
-  
-  /* Hình ảnh */
-  .user-img .image img {
-    max-width: 100px;
-    max-height: 100px;
-    margin-bottom: 10px;
-  }
-  
-  .user-img .image input {
-    display: block;
-    margin-top: 10px;
-  }
-  
-  /* Báo lỗi */
-  .error-message-id {
-    color: rgb(251, 0, 0);
-    font-size: 12px;
-    margin-top: 5px;
-    display: block;
-  }
+.invoice-id{
+  font-family: 'Arial', sans-serif; 
+  font-size: 20px; 
+  font-weight: bold;
+  color: #4A90E2;
+  background-color: #F0F8FF;
+  padding: 10px 15px; 
+  border-radius: 5px; 
+  border: 2px solid #4A90E2; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  display: inline-block; 
+  transition: background-color 0.3s;
+}
+.invoice-id:hover {
+  background-color: #92dbfd;
+}
+
   .error-message-date {
     color: rgb(251, 0, 0);
     font-size: 12px;
     margin-top: 5px;
     display: block;
   }
+  
   .error-message-first-name {
     color: rgb(251, 0, 0);
     font-size: 12px;
     margin-top: 5px;
     display: block;
   }
+
   .error-message-last-name {
     color: rgb(251, 0, 0);
     font-size: 12px;
     margin-top: 5px;
     display: block;
   }
+
   .error-message-email{
     color: rgb(251, 0, 0);
     font-size: 12px;
     margin-top: 5px;
     display: block;
   }
+
   .error-message-city {
     color: rgb(251, 0, 0);
     font-size: 12px;
     margin-top: 5px;
     display: block;
-  }.error-message-region {
+  }
+  .error-message-region {
     color: rgb(251, 0, 0);
     font-size: 12px;
     margin-top: 5px;
     display: block;
   }
   
-  
-  /* Nút đóng popup */
   .close-popup {
     display: inline-block;
     cursor: pointer;
@@ -386,14 +405,13 @@
     top: 2%;
     left: 93%;
   }
+
   .close-popup:hover{
     background-color: rgb(204, 66, 66);
   }
 
-  
-  
-  /* Nút tạo Invoice */
   .btn-invoice-create {
+    margin-top: 10px;
     background-color: #0077ff;
     border: none;
     color: white;
@@ -404,22 +422,18 @@
     width: 100%;
     box-sizing: border-box;
   }
+
   .btn-invoice-create:hover{
     background-color: #044da0;
 
   }
-  
-  /* Đặt các input select ngang hàng */
+
   .date-group {
     display: flex;
     gap: 10px;
   }
   
-
-
-/*edit form*/
-
-.Edit-invoice-container {
+.edit-invoice-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -429,6 +443,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 15px;
   }
   
   .popup-form-edit {
@@ -441,13 +456,11 @@
     position: relative;
   }
   
-
   .form-invoice-edit {
     display: flex;
     flex-direction: column;
     gap: 15px;
   }
-  
   
   .form-group-inline {
     display: flex;
@@ -472,23 +485,24 @@
     border-radius: 5px;
     box-sizing: border-box;
   }
-  
-  /* Hình ảnh */
-  .user-img .image img {
-    max-width: 100px;
-    max-height: 100px;
-    margin-bottom: 10px;
+
+  .invoice-id-edit{
+    font-family: 'Arial', sans-serif; 
+    font-size: 20px;
+    font-weight: bold;
+    color: #eb0000;
+    background-color: #F0F8FF;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 2px solid #ff2323;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    transition: background-color 0.3s;
+  }
+  .invoice-id-edit:hover {
+    background-color: #92dbfd;
   }
   
-  .user-img .image input {
-    display: block;
-    margin-top: 10px;
-  }
-  
-  /* Báo lỗi */
-  
-  
-  /* Nút đóng popup */
   .close-popup-edit {
     display: inline-block;
     cursor: pointer;
@@ -503,14 +517,11 @@
     left: 93%;
   
   }
+
   .close-popup-edit:hover{
     background-color: rgb(204, 66, 66);
-  }
-
+  } 
   
-  
-  
-  /* Nút tạo Invoice */
   .btn-invoice-edit {
     background-color: #0077ff;
     border: none;
@@ -521,23 +532,17 @@
     cursor: pointer;
     width: 100%;
     box-sizing: border-box;
+    margin-top: 10px;
   }
   .btn-invoice-edit:hover{
     background-color: #044da0;
 
   }
   
-  /* Đặt các input select ngang hàng */
   .date-group {
     display: flex;
     gap: 10px;
   }
-
-
-/* delete container */
-
-
-
 
 .confirm-delete-container {
   background-color: #fff;
@@ -587,10 +592,6 @@
 .confirm-buttons button:hover {
   opacity: 0.9;
 }
-
-
-/* delete All container */
-
 
 .confirm-deleteAll-container {
   background-color: #fff;
