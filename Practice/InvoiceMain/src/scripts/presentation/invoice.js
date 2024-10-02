@@ -88,6 +88,7 @@ class InvoicePresentation {
     });
 }
 
+
   addSelectAllEvent() {
     this.selectAllEl.addEventListener("change", (event) => {
       const isChecked = event.target.checked;
