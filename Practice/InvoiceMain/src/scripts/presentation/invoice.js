@@ -1,10 +1,10 @@
-import Template from "./helpers/template.js";
+import Template from "./helpers/template/template.js";
 import ModelPresentation from "./modal.js";
 
 class InvoicePresentation {
-  constructor(InvoiceBusiness) {
-    this.InvoiceBusiness = InvoiceBusiness;
-    this.modal = new ModelPresentation(this.InvoiceBusiness);
+  constructor(invoiceBusiness) {
+    this.invoiceBusiness = invoiceBusiness;
+    this.modal = new ModelPresentation(this.invoiceBusiness);
   }
 
   init() {
@@ -29,8 +29,8 @@ class InvoicePresentation {
   }
 
   showInvoices() {
-    console.log(this.InvoiceBusiness);
-    const data = this.InvoiceBusiness.getInvoices();
+    console.log(this.invoiceBusiness);
+    const data = this.invoiceBusiness.getInvoices();
     this.addInvoice(data);
   }
 
@@ -119,13 +119,13 @@ class InvoicePresentation {
   performSearch() {
     const query = this.searchInputEl.value;
     console.log("Search Query:", query);
-    const filteredInvoices = this.InvoiceBusiness.searchInvoices(query);
+    const filteredInvoices = this.invoiceBusiness.searchInvoices(query);
     console.log("Filtered Invoices:", filteredInvoices);
     this.displaySearchInvoices(filteredInvoices);
   }
 
   displaySearchInvoices(filteredData = null) {
-    const data = filteredData || this.InvoiceBusiness.getInvoices();
+    const data = filteredData || this.invoiceBusiness.getInvoices();
     this.addInvoice(data);
   }
 
@@ -134,12 +134,12 @@ class InvoicePresentation {
   }
 
   openDeleteModal(id) {
-    const data = this.InvoiceBusiness.getInvoiceById(id);
+    const data = this.invoiceBusiness.getInvoiceById(id);
     this.modal.openDeleteInvoiceModal(data);
   }
 
   openEditModal(id) {
-    const data = this.InvoiceBusiness.getInvoiceById(id);
+    const data = this.invoiceBusiness.getInvoiceById(id);
     this.modal.openEditInvoiceModal(data);
   }
 
