@@ -1,12 +1,12 @@
-import ValidateInvoices from "../validation/validateInvoice";
-import DisplayErrorMessages from "../presentation/helpers/errorHandler";
-import Invoice from "../data/invoice";
+import InvoiceValidator from '../validation/invoiceValidate';
+import ErrorMessageDisplay from '../presentation/helpers/errorHandler';
+import Invoice from '../models/invoice';
 
 class InvoiceBusiness {
   constructor(invoiceDataAccess) {
     this.dataAccess = invoiceDataAccess;
-    this.validateInvoices = new ValidateInvoices();
-    this.displayErrorMessages = new DisplayErrorMessages();
+    this.validateInvoices = new InvoiceValidator();
+    this.displayErrorMessages = new ErrorMessageDisplay();
   }
 
   getInvoices() {
@@ -33,17 +33,9 @@ class InvoiceBusiness {
       return null;
     }
 
-    const newInvoice = new Invoice(
-      data.id,
-      data.firstName,
-      data.lastName,
-      data.email,
-      data.city,
-      data.region,
-      data.date
-    );
-
+    const newInvoice = new Invoice(data);
     this.dataAccess.addInvoice(newInvoice);
+    
     return newInvoice;
   }
 
@@ -83,12 +75,12 @@ class InvoiceBusiness {
       const dateMatch = invoice.date.toLowerCase().includes(query);
       const statusMatch = invoice.status.toLowerCase().includes(query);
 
-      console.log("ID Match:", idMatch);
-      console.log("First Name Match:", firstNameMatch);
-      console.log("Last Name Match:", lastNameMatch);
-      console.log("Email Match:", emailMatch);
-      console.log("Date Match:", dateMatch);
-      console.log("Status Match:", statusMatch);
+      console.log('ID Match:', idMatch);
+      console.log('First Name Match:', firstNameMatch);
+      console.log('Last Name Match:', lastNameMatch);
+      console.log('Email Match:', emailMatch);
+      console.log('Date Match:', dateMatch);
+      console.log('Status Match:', statusMatch);
 
       return (
         idMatch ||

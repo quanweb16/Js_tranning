@@ -1,6 +1,6 @@
-import InvoiceBusiness from "./business/invoice.js";
-import InvoiceDataAccess from "./dataAccess/invoiceDataAccess.js";
-import InvoicePresentation from "./presentation/invoice.js";
+import InvoiceBusiness from './business/invoice.js';
+import InvoiceDataAccess from './dataAccess/invoiceStorage.js';
+import InvoicePresentation from './presentation/invoice.js';
 
 class App {
     constructor() {
