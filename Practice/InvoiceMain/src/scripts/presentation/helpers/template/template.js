@@ -19,8 +19,8 @@ class Template {
                   <div class="action">
                       <div class="dots"></div>
                       <div class="button-action">
-                          <div class="edit-btn">Edit</div>
-                          <div class="delete-btn">Delete</div>
+                          <div class="edit-invoice-btn">Edit</div>
+                          <div class="delete-invoice-btn">Delete</div>
                       </div>
                   </div>
               </div>

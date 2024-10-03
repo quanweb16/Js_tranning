@@ -12,8 +12,8 @@ class InvoicePresentation {
     this.invoiceList = document.querySelector(
       '.invoices .invoice-list .table-list'
     );
-    this.editInvoiceEl = '.edit-btn';
-    this.deleteInvoiceEl = '.delete-btn';
+    this.editInvoiceEl = '.edit-invoice-btn';
+    this.deleteInvoiceEl = '.delete-invoice-btn';
     this.selectAllEl = document.querySelector('.invoice-checkbox-all');
     this.deleteAllEl = document.querySelector('.delete-all');
     this.searchInputEl = document.getElementById('search-input');
