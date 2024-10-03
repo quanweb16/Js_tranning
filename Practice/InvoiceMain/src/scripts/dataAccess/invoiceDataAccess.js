@@ -1,9 +1,22 @@
+import Invoice from "../data/invoice";
+
 class InvoiceDataAccess {
     constructor() {}
-
+    
     getInvoices() {
-        const invoices = localStorage.getItem('invoices');
-        return invoices ? JSON.parse(invoices) : [];
+      const invoices = localStorage.getItem('invoices');
+      const parsedInvoices = invoices ? JSON.parse(invoices) : [];
+      return parsedInvoices.map(invoiceData => new Invoice(
+          invoiceData.id,
+          invoiceData.firstName,
+          invoiceData.lastName,
+          invoiceData.email,
+          invoiceData.city,
+          invoiceData.region,
+          invoiceData.date,
+          invoiceData.status
+      ));
+
     }
 
     addInvoice(invoice) {
