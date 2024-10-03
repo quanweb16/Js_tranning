@@ -1,5 +1,5 @@
-import Template from "./helpers/template/template.js";
-import ModelPresentation from "./modal.js";
+import Template from './helpers/template/template.js';
+import ModelPresentation from './modal.js';
 
 class InvoicePresentation {
   constructor(invoiceBusiness) {
@@ -10,14 +10,14 @@ class InvoicePresentation {
   init() {
     // Initial elements
     this.invoiceList = document.querySelector(
-      ".invoices .invoice-list .table-list"
+      '.invoices .invoice-list .table-list'
     );
-    this.editInvoiceEl = ".edit-btn";
-    this.deleteInvoiceEl = ".delete-btn";
-    this.selectAllEl = document.querySelector(".invoice-checkbox-all");
-    this.deleteAllEl = document.querySelector(".delete-all");
-    this.searchInputEl = document.getElementById("search-input");
-    this.searchButtonEl = document.querySelector(".search-button");
+    this.editInvoiceEl = '.edit-btn';
+    this.deleteInvoiceEl = '.delete-btn';
+    this.selectAllEl = document.querySelector('.invoice-checkbox-all');
+    this.deleteAllEl = document.querySelector('.delete-all');
+    this.searchInputEl = document.getElementById('search-input');
+    this.searchButtonEl = document.querySelector('.search-button');
     this.setupActionMenuToggle();
     this.addSelectAllEvent();
     this.addDeleteAllEvent();
@@ -34,37 +34,37 @@ class InvoicePresentation {
   }
 
   setupActionMenuToggle() {
-    this.invoiceList.addEventListener("click", (event) => {
-      const dotsButton = event.target.closest(".dots");
+    this.invoiceList.addEventListener('click', (event) => {
+      const dotsButton = event.target.closest('.dots');
       if (dotsButton) {
         this.invoiceList
-          .querySelectorAll(".button-action")
-          .forEach((btn) => (btn.style.display = "none"));
+          .querySelectorAll('.button-action')
+          .forEach((btn) => (btn.style.display = 'none'));
         const buttonAction = dotsButton
-          .closest(".action")
-          .querySelector(".button-action");
-        buttonAction.style.display = "block";
+          .closest('.action')
+          .querySelector('.button-action');
+        buttonAction.style.display = 'block';
       }
     });
 
-    document.addEventListener("click", (event) => {
-      if (!event.target.closest(".action")) {
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.action')) {
         this.invoiceList
-          .querySelectorAll(".button-action")
-          .forEach((btn) => (btn.style.display = "none"));
+          .querySelectorAll('.button-action')
+          .forEach((btn) => (btn.style.display = 'none'));
       }
     });
   }
 
   addEditInvoiceEvent() {
-    this.invoiceList.addEventListener("click", (event) => {
+    this.invoiceList.addEventListener('click', (event) => {
       if (!event.target.closest(this.editInvoiceEl)) return;
-      const tableItem = event.target.closest(".table-item");
-      const id = tableItem.getAttribute("data-id");
+      const tableItem = event.target.closest('.table-item');
+      const id = tableItem.getAttribute('data-id');
       this.openEditModal(id);
-      const buttonAction = tableItem.querySelector(".button-action");
+      const buttonAction = tableItem.querySelector('.button-action');
       if (buttonAction) {
-        buttonAction.style.display = "none";
+        buttonAction.style.display = 'none';
       }
     });
   }
@@ -83,17 +83,17 @@ class InvoicePresentation {
   }
 
   addSelectAllEvent() {
-    this.selectAllEl.addEventListener("change", (event) => {
+    this.selectAllEl.addEventListener('change', (event) => {
       const isChecked = event.target.checked;
-      const checkboxes = this.invoiceList.querySelectorAll(".invoice-checkbox");
+      const checkboxes = this.invoiceList.querySelectorAll('.invoice-checkbox');
       checkboxes.forEach((checkbox) => (checkbox.checked = isChecked));
     });
   }
 
   addDeleteAllEvent() {
-    this.deleteAllEl.addEventListener("click", () => {
+    this.deleteAllEl.addEventListener('click', () => {
       const selectedCheckboxes = this.invoiceList.querySelectorAll(
-        ".invoice-checkbox:checked"
+        '.invoice-checkbox:checked'
       );
       if (selectedCheckboxes.length === 0) {
         this.modal.openNotificationDelete();
@@ -104,12 +104,12 @@ class InvoicePresentation {
   }
 
   addSearchEvent() {
-    this.searchButtonEl.addEventListener("click", () => this.performSearch());
-    this.searchInputEl.addEventListener("keyup", (event) => {
-      if (event.key === "Enter") {
+    this.searchButtonEl.addEventListener('click', () => this.performSearch());
+    this.searchInputEl.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
         this.performSearch();
       }
-      if (this.searchInputEl.value.trim() === "") {
+      if (this.searchInputEl.value.trim() === '') {
         this.showInvoices();
       }
     });
@@ -117,9 +117,9 @@ class InvoicePresentation {
 
   performSearch() {
     const query = this.searchInputEl.value;
-    console.log("Search Query:", query);
+    console.log('Search Query:', query);
     const filteredInvoices = this.invoiceBusiness.searchInvoices(query);
-    console.log("Filtered Invoices:", filteredInvoices);
+    console.log('Filtered Invoices:', filteredInvoices);
     this.displaySearchInvoices(filteredInvoices);
   }
 
