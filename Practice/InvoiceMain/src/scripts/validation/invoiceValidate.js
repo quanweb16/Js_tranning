@@ -1,7 +1,7 @@
 
-import ERROR_MESSAGES from "../constant/errorMessages";
+import ERROR_MESSAGES from '../constants/errorMessages';
 
-class ValidateInvoices {
+class InvoiceValidator {
   validateInvoiceData(data, invoices) {
     const errors = {};
 
@@ -65,7 +65,7 @@ class ValidateInvoices {
 
   isValidDate(date) {
     const inputDate = new Date(date);
-    const minDate = new Date("2020-01-01");
+    const minDate = new Date('2020-01-01');
     const currentDate = new Date();
     if (inputDate < minDate) {
       return false;
@@ -107,4 +107,4 @@ class ValidateInvoices {
     );
   }
 }
-export default ValidateInvoices;
+export default InvoiceValidator;

@@ -1,4 +1,4 @@
-class DisplayErrorMessages {
+class ErrorMessageDisplay {
   showErrorsCreateInvoice(errors) {
     document.querySelector('.create-invoice-container .error-message-date').innerHTML = errors.date || '';
     document.querySelector('.create-invoice-container .error-message-first-name').innerHTML = errors.firstName || '';
@@ -18,5 +18,5 @@ class DisplayErrorMessages {
   }
 }
 
-export default DisplayErrorMessages;
+export default ErrorMessageDisplay;
 
