@@ -1,6 +1,6 @@
 class Template {
   static buildInvoices(data = []) {
-    return data.map((item) => this.buildInvoiceItem(item)).join("");
+    return data.map((item) => this.buildInvoiceItem(item)).join('');
   }
 
   static buildInvoiceItem(data) {
@@ -10,11 +10,11 @@ class Template {
                   <input type="checkbox" class="invoice-checkbox">
                   <div class="invoice">${data.id}</div>
                   <div class="profile-pic">
-                      <div class="name">${data.firstName || "No Name"} ${data.lastName || "No Name"}</div>
+                      <div class="name">${data.firstName ||""} ${data.lastName ||"" }</div>
                   </div>
-                  <div class="email">${data.email || "noemail@example.com"}</div>
-                  <div class="date"><i class="fas fa-calendar-alt"></i> ${data.date || ""}</div>
-                  <div class="status-1">${data.status || ""}</div>
+                  <div class="email">${data.email ||"" }</div>
+                  <div class="date"><i class="fas fa-calendar-alt"></i> ${data.date ||""}</div>
+                  <div class="status-1">${data.status ||""}</div>
                   <button class="special"><i class="fas fa-star"></i></button>
                   <div class="action">
                       <div class="dots"></div>

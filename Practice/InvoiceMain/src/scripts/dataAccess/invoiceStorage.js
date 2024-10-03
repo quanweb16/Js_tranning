@@ -1,4 +1,4 @@
-import Invoice from "../data/invoice";
+import Invoice from "../models/invoice";
 
 class InvoiceDataAccess {
     constructor() {}
@@ -6,16 +6,8 @@ class InvoiceDataAccess {
     getInvoices() {
       const invoices = localStorage.getItem('invoices');
       const parsedInvoices = invoices ? JSON.parse(invoices) : [];
-      return parsedInvoices.map(invoiceData => new Invoice(
-          invoiceData.id,
-          invoiceData.firstName,
-          invoiceData.lastName,
-          invoiceData.email,
-          invoiceData.city,
-          invoiceData.region,
-          invoiceData.date,
-          invoiceData.status
-      ));
+
+      return parsedInvoices.map(invoiceData => new Invoice(invoiceData));
 
     }
 
