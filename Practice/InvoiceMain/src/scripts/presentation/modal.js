@@ -125,7 +125,6 @@ class ModalPresentation {
 
   openEditInvoiceModal(data) {
     this.renderModalEdit();
-    console.log("Data for editing:", data);
     document.querySelector("#invoice-id").textContent = data.id;
     document.querySelector("#date").value = data.date;
     document.querySelector("#first-name").value = data.firstName;
@@ -164,7 +163,6 @@ class ModalPresentation {
       firstName,
       lastName,
       email,
-      status: "Pending",
       city,
       region,
     };
