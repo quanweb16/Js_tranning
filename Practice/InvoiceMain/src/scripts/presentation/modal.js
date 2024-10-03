@@ -65,7 +65,7 @@ class ModalPresentation {
     });
   }
 
-  openDeleteAllInvoiceModal(data) {
+  openDeleteAllInvoiceModal() {
     this.renderModalDeleteAll();
     document
       .querySelector(".confirm-yes-all")
@@ -203,7 +203,7 @@ class ModalPresentation {
     }
   }
 
-  handleDeleteAllInvoices(id) {
+  handleDeleteAllInvoices() {
     const selectedCheckboxes = document.querySelectorAll(
       ".invoice-checkbox:checked"
     );
