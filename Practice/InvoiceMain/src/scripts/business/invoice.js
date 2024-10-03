@@ -1,6 +1,6 @@
-import ValidateInvoices from "../../validation/invoice/validateInvoices";
-import DisplayErrorMessages from "../../presentation/helpers/display/displayErrorMessages";
-import Invoice from "../../data/invoice";
+import ValidateInvoices from "../validation/validateInvoice";
+import DisplayErrorMessages from "../presentation/helpers/display/displayErrorMessages";
+import Invoice from "../data/invoice";
 
 class InvoiceBusiness {
   constructor(invoiceDataAccess) {
