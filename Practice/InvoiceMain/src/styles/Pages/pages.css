@@ -5,7 +5,6 @@
   padding: 20px;
   flex-grow: 1;
   background: #F1F4FA;
-
   min-height: 100vh;
 }
 
@@ -158,7 +157,7 @@
 
 .invoice-item {
   display: contents;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .checkbox-header, .invoice-checkbox {
