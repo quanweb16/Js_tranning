@@ -243,8 +243,8 @@
   height: 60px;
 }
 
-.button-action .edit-btn,
-.button-action .delete-btn {
+.button-action .edit-invoice-btn,
+.button-action .delete-invoice-btn {
   border-radius: 5px;
   margin-left: 10px;
   margin-right: 10px;
@@ -260,22 +260,22 @@
   display: block;
 }
 
-.button-action .edit-btn {
+.button-action .edit-invoice-btn {
   color: #3A36DB;
   background-color: #F1F4FA;
 }
 
-.button-action .delete-btn {
+.button-action .delete-invoice-btn {
   color: #FF69B4 ;
   background-color: #fdd9ea;
 }
 
-.button-action .edit-btn:hover {
+.button-action .edit-invoice-btn:hover {
   color: #ffffff;
   background-color: #598cf3;
 }
 
-.button-action .delete-btn:hover {
+.button-action .delete-invoice-btn:hover {
   color: #ffffff ;
   background-color: #f379b2;
 }
