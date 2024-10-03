@@ -29,9 +29,8 @@ class InvoicePresentation {
   }
 
   showInvoices() {
-    console.log(this.invoiceBusiness);
     const data = this.invoiceBusiness.getInvoices();
-    this.addInvoice(data);
+    this.addInvoiceToList(data);
   }
 
   setupActionMenuToggle() {
@@ -126,7 +125,7 @@ class InvoicePresentation {
 
   displaySearchInvoices(filteredData = null) {
     const data = filteredData || this.invoiceBusiness.getInvoices();
-    this.addInvoice(data);
+    this.addInvoiceToList(data);
   }
 
   openDeleteAllModal() {
@@ -143,7 +142,7 @@ class InvoicePresentation {
     this.modal.openEditInvoiceModal(data);
   }
 
-  addInvoice(data) {
+  addInvoiceToList(data) {
     const template = Template.buildInvoices(data);
     this.invoiceList.innerHTML = template;
   }
