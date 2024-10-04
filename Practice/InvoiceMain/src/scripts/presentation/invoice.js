@@ -9,14 +9,12 @@ class InvoicePresentation {
 
   init() {
     // Initial elements
-    this.invoiceList = document.querySelector(
-      '.invoices .invoice-list .table-list'
-    );
+    this.invoiceList = document.querySelector('.invoices .invoice-list .table-list');
     this.editInvoiceEl = '.edit-invoice-btn';
     this.deleteInvoiceEl = '.delete-invoice-btn';
     this.selectAllEl = document.querySelector('.invoice-checkbox-all');
     this.deleteAllEl = document.querySelector('.delete-all');
-    this.searchInputEl = document.getElementById('search-input');
+    this.searchInputEl = document.querySelector('.search-input');
     this.searchButtonEl = document.querySelector('.search-button');
     this.setupActionMenuToggle();
     this.addSelectAllEvent();
@@ -37,21 +35,15 @@ class InvoicePresentation {
     this.invoiceList.addEventListener('click', (event) => {
       const dotsButton = event.target.closest('.dots');
       if (dotsButton) {
-        this.invoiceList
-          .querySelectorAll('.button-action')
-          .forEach((btn) => (btn.style.display = 'none'));
-        const buttonAction = dotsButton
-          .closest('.action')
-          .querySelector('.button-action');
+        this.invoiceList.querySelectorAll('.button-action').forEach((btn) => (btn.style.display = 'none'));
+        const buttonAction = dotsButton.closest('.action').querySelector('.button-action');
         buttonAction.style.display = 'block';
       }
     });
 
     document.addEventListener('click', (event) => {
       if (!event.target.closest('.action')) {
-        this.invoiceList
-          .querySelectorAll('.button-action')
-          .forEach((btn) => (btn.style.display = 'none'));
+        this.invoiceList.querySelectorAll('.button-action').forEach((btn) => (btn.style.display = 'none'));
       }
     });
   }
@@ -92,9 +84,7 @@ class InvoicePresentation {
 
   addDeleteAllEvent() {
     this.deleteAllEl.addEventListener('click', () => {
-      const selectedCheckboxes = this.invoiceList.querySelectorAll(
-        '.invoice-checkbox:checked'
-      );
+      const selectedCheckboxes = this.invoiceList.querySelectorAll('.invoice-checkbox:checked');
       if (selectedCheckboxes.length === 0) {
         this.modal.openNotificationDelete();
         return;

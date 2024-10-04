@@ -54,9 +54,7 @@ class ModalPresentation {
 
   openDeleteInvoiceModal(data) {
     this.renderModalDelete();
-    document
-      .querySelector('.confirm-yes')
-      .addEventListener('click', (event) => {
+    document.querySelector('.confirm-yes').addEventListener('click', (event) => {
         event.preventDefault();
         this.handleDeleteInvoice(data.id);
       });
@@ -67,9 +65,7 @@ class ModalPresentation {
 
   openDeleteAllInvoiceModal() {
     this.renderModalDeleteAll();
-    document
-      .querySelector('.confirm-yes-all')
-      .addEventListener('click', (event) => {
+    document.querySelector('.confirm-yes-all').addEventListener('click', (event) => {
         event.preventDefault();
         this.handleDeleteAllInvoices();
       });
@@ -87,9 +83,7 @@ class ModalPresentation {
 
   openNotificationCreate() {
     this.renderNotificationCreate();
-    document
-      .querySelector('.confirm-ok-success')
-      .addEventListener('click', () => {
+    document.querySelector('.confirm-ok-success').addEventListener('click', () => {
         this.closeModal();
         location.reload();
       });
@@ -97,9 +91,7 @@ class ModalPresentation {
 
   openNotificationEdit() {
     this.renderNotificationEdit();
-    document
-      .querySelector('.confirm-edit-success')
-      .addEventListener('click', () => {
+    document.querySelector('.confirm-edit-success').addEventListener('click', () => {
         this.closeModal();
         location.reload();
       });
@@ -108,10 +100,8 @@ class ModalPresentation {
   openCreateInvoiceModal() {
     this.renderModalAdd();
     const id = Date.now();
-    document.querySelector('#invoice-id').textContent = id;
-    document
-      .querySelector('.btn-invoice-create')
-      .addEventListener('click', (event) => {
+    document.querySelector('.invoice-id').textContent = id;
+    document.querySelector('.btn-invoice-create').addEventListener('click', (event) => {
         event.preventDefault();
         const result = this.handleCreateInvoice();
         if (result) {
@@ -125,16 +115,14 @@ class ModalPresentation {
 
   openEditInvoiceModal(data) {
     this.renderModalEdit();
-    document.querySelector('#invoice-id').textContent = data.id;
-    document.querySelector('#date').value = data.date;
-    document.querySelector('#first-name').value = data.firstName;
-    document.querySelector('#last-name').value = data.lastName;
-    document.querySelector('#email').value = data.email;
-    document.querySelector('#city').value = data.city;
-    document.querySelector('#region').value = data.region;
-    document
-      .querySelector('.btn-invoice-edit')
-      .addEventListener('click', (event) => {
+    document.querySelector('.invoice-id').textContent = data.id;
+    document.querySelector('.invoice-date').value = data.date;
+    document.querySelector('.invoice-first-name').value = data.firstName;
+    document.querySelector('.invoice-last-name').value = data.lastName;
+    document.querySelector('.invoice-email').value = data.email;
+    document.querySelector('.invoice-city').value = data.city;
+    document.querySelector('.invoice-region').value = data.region;
+    document.querySelector('.btn-invoice-edit').addEventListener('click', (event) => {
         event.preventDefault();
         const result = this.handleEditInvoices();
         console.log('Edit Result:', result);
@@ -142,21 +130,19 @@ class ModalPresentation {
           this.openNotificationEdit();
         }
       });
-    document
-      .querySelector('.close-popup-edit')
-      .addEventListener('click', () => {
+    document.querySelector('.close-popup-edit').addEventListener('click', () => {
         this.closeModal();
       });
   }
 
   handleCreateInvoice() {
-    const id = document.querySelector('#invoice-id').textContent;
-    const date = document.querySelector('#date').value;
-    const firstName = document.querySelector('#first-name').value;
-    const lastName = document.querySelector('#last-name').value;
-    const email = document.querySelector('#email').value;
-    const city = document.querySelector('#city').value;
-    const region = document.querySelector('#region').value;
+    const id = document.querySelector('.invoice-id').textContent;
+    const date = document.querySelector('.invoice-date').value;
+    const firstName = document.querySelector('.invoice-first-name').value;
+    const lastName = document.querySelector('.invoice-last-name').value;
+    const email = document.querySelector('.invoice-email').value;
+    const city = document.querySelector('.invoice-city').value;
+    const region = document.querySelector('.invoice-region').value;
     const invoiceData = {
       id,
       date,
@@ -172,13 +158,13 @@ class ModalPresentation {
   }
 
   handleEditInvoices() {
-    const id = document.querySelector('#invoice-id').textContent;
-    const date = document.querySelector('#date').value;
-    const firstName = document.querySelector('#first-name').value;
-    const lastName = document.querySelector('#last-name').value;
-    const email = document.querySelector('#email').value;
-    const city = document.querySelector('#city').value;
-    const region = document.querySelector('#region').value;
+    const id = document.querySelector('.invoice-id').textContent;
+    const date = document.querySelector('.invoice-date').value;
+    const firstName = document.querySelector('.invoice-first-name').value;
+    const lastName = document.querySelector('.invoice-last-name').value;
+    const email = document.querySelector('.invoice-email').value;
+    const city = document.querySelector('.invoice-city').value;
+    const region = document.querySelector('.invoice-region').value;
     const data = this.invoiceBusiness.getInvoiceById(id);
     const updatedInvoice = {
       ...data,
@@ -194,19 +180,13 @@ class ModalPresentation {
   }
 
   handleDeleteInvoice(id) {
-    try {
       this.invoiceBusiness.deleteInvoice(id);
       this.closeModal();
       location.reload();
-    } catch (error) {
-      console.error('Error deleting invoice:', error.message);
-    }
   }
 
   handleDeleteAllInvoices() {
-    const selectedCheckboxes = document.querySelectorAll(
-      '.invoice-checkbox:checked'
-    );
+    const selectedCheckboxes = document.querySelectorAll('.invoice-checkbox:checked');
     selectedCheckboxes.forEach((checkbox) => {
       const id = checkbox.closest('.table-item').getAttribute('data-id');
       this.invoiceBusiness.deleteInvoice(id);

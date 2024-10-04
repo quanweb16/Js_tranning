@@ -10,11 +10,11 @@ class Template {
                   <input type="checkbox" class="invoice-checkbox">
                   <div class="invoice">${data.id}</div>
                   <div class="profile-pic">
-                      <div class="name">${data.firstName ||""} ${data.lastName ||"" }</div>
+                      <div class="name">${data.firstName || ''} ${data.lastName || ''}</div>
                   </div>
-                  <div class="email">${data.email ||"" }</div>
-                  <div class="date"><i class="fas fa-calendar-alt"></i> ${data.date ||""}</div>
-                  <div class="status-1">${data.status ||""}</div>
+                  <div class="email">${data.email || ''}</div>
+                  <div class="date"><i class="fas fa-calendar-alt"></i> ${data.date || ''}</div>
+                  <div class="status-1">${data.status || ''}</div>
                   <button class="special"><i class="fas fa-star"></i></button>
                   <div class="action">
                       <div class="dots"></div>
@@ -39,35 +39,35 @@ class Template {
                        </div>
                       <div class="form-group">
                           <label for="date">Date</label>
-                          <input type="date" id="date" name="date" required>
+                          <input type="date" id="date" class="invoice-date" name="date" required>
                           <span class="error-message-date" id="date-error"></span>
                       </div>
                       <div class="form-group-inline">
                           <div class="form-group">
                               <label for="first-name">First Name</label>
-                              <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+                              <input type="text" id="first-name" name="first-name" class="invoice-first-name" placeholder="First Name" required>
                               <span class="error-message-first-name" id="first-name-error"></span>
                           </div>
                           <div class="form-group">
                               <label for="last-name">Last Name</label>
-                              <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+                              <input type="text" id="last-name" name="last-name" class="invoice-last-name" placeholder="Last Name" required>
                               <span class="error-message-last-name" id="last-name-error"></span>
                           </div>
                       </div>
                       <div class="form-group">
                           <label for="email">Email</label>
-                          <input type="email" id="email" name="email" placeholder="name@gmail.com" required>
+                          <input type="email" id="email" name="email" class="invoice-email" placeholder="name@gmail.com" required>
                           <span class="error-message-email" id="email-error"></span>
                       </div>
                       <div class="form-group-inline">
                           <div class="form-group">
                               <label for="city">City</label>
-                              <input type="text" id="city" name="city" placeholder="City" required>
+                              <input type="text" id="city" name="city" class="invoice-city" placeholder="City" required>
                               <span class="error-message-city" id="city-error"></span>
                           </div>
                           <div class="form-group">
                               <label for="region">Region</label>
-                              <input type="text" id="region" name="region" placeholder="Region" required>
+                              <input type="text" id="region" name="region" class="invoice-region" placeholder="Region" required>
                               <span class="error-message-region" id="region-error"></span>
                           </div>
                       </div>
@@ -89,40 +89,40 @@ class Template {
               <div class="popup-form-edit">
                       <div class="form-group-edit">
                            <label for="invoice-id">Invoice Id</label>
-                           <span id="invoice-id" class="invoice-id-edit">#8181</span> 
+                           <span id="invoice-id" class="invoice-id">#8181</span> 
                            <span class="error-message-id"></span>
                       </div>
                       <div class="form-group-edit">
                           <label for="date">Date</label>
-                          <input type="date" id="date" name="date" required>
+                          <input type="date" id="date" name="date" class="invoice-date" required>
                           <span class="error-message-date" id="date-error"></span>
                       </div>
                       <div class="form-group-inline">
                           <div class="form-group-edit">
                               <label for="first-name">First Name</label>
-                              <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+                              <input type="text" id="first-name" name="first-name" class="invoice-first-name" placeholder="First Name" required>
                               <span class="error-message-first-name" id="first-name-error"></span>
                           </div>
                           <div class="form-group-edit">
                               <label for="last-name">Last Name</label>
-                              <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+                              <input type="text" id="last-name" name="last-name" class="invoice-last-name" placeholder="Last Name" required>
                               <span class="error-message-last-name" id="last-name-error"></span>
                           </div>
                       </div>
                       <div class="form-group-edit">
                           <label for="email">Email</label>
-                          <input type="email" id="email" name="email" placeholder="name@gmail.com" required>
+                          <input type="email" id="email" name="email" class="invoice-email" placeholder="name@gmail.com" required>
                           <span class="error-message-email" id="email-error"></span>
                       </div>
                       <div class="form-group-inline">
                           <div class="form-group-edit">
                               <label for="city">City</label>
-                              <input type="text" id="city" name="city" placeholder="City" required>
+                              <input type="text" id="city" name="city" class="invoice-city" placeholder="City" required>
                               <span class="error-message-city" id="city-error"></span>
                           </div>
                           <div class="form-group-edit">
                               <label for="region">Region</label>
-                              <input type="text" id="region" name="region" placeholder="Region" required>
+                              <input type="text" id="region" name="region" class="invoice-region" placeholder="Region" required>
                               <span class="error-message-region" id="region-error"></span>
                           </div>
                       </div>
