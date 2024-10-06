@@ -22,12 +22,12 @@
   
 }
 
-.button-add{
+.button-add-container{
   position: absolute;
   left: 90%;
 }
 
-.button-add .add-invoice-btn{
+.button-add-container .add-invoice-btn{
   background-color: #3A36DB;
   border-radius: 10px;
   border: none;
@@ -40,7 +40,7 @@
   transition: all 200ms;
 }
 
-.button-add .add-invoice-btn:hover{
+.button-add-container .add-invoice-btn:hover{
   transform: scale(1.05);
 }
 
@@ -117,7 +117,7 @@
   text-align: right;
 }
 
-.table-list {
+.table-list-invoice {
   list-style-type: none;
   padding: 0;
   margin: 0;

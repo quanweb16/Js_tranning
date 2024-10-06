@@ -1,4 +1,4 @@
-import Template from './helpers/template/template.js';
+import Template from '../helpers/template.js';
 import ModelPresentation from './modal.js';
 
 class InvoicePresentation {
@@ -9,13 +9,16 @@ class InvoicePresentation {
 
   init() {
     // Initial elements
-    this.invoiceList = document.querySelector('.invoices .invoice-list .table-list');
+    this.invoiceList = document.querySelector('.invoices .invoice-list .table-list-invoice');
     this.editInvoiceEl = '.edit-invoice-btn';
     this.deleteInvoiceEl = '.delete-invoice-btn';
-    this.selectAllEl = document.querySelector('.invoice-checkbox-all');
-    this.deleteAllEl = document.querySelector('.delete-all');
-    this.searchInputEl = document.querySelector('.search-input');
-    this.searchButtonEl = document.querySelector('.search-button');
+    this.checkboxHeaderGrid = document.querySelector('.header-item.checkbox-header');
+    this.searchGird = document.querySelector('.search-container');
+    this.deleteAllGird = document.querySelector('.header-item.trash-header');
+    this.selectAllEls = this.checkboxHeaderGrid.querySelectorAll('.invoice-checkbox-all');
+    this.searchInputEl = this.searchGird.querySelector('.search-input');
+    this.searchButtonEl = this.searchGird.querySelector('.search-button');
+    this.deleteAllEl = this.deleteAllGird.querySelector('.delete-all');
     this.setupActionMenuToggle();
     this.addSelectAllEvent();
     this.addDeleteAllEvent();
@@ -75,12 +78,16 @@ class InvoicePresentation {
   }
 
   addSelectAllEvent() {
-    this.selectAllEl.addEventListener('change', (event) => {
-      const isChecked = event.target.checked;
-      const checkboxes = this.invoiceList.querySelectorAll('.invoice-checkbox');
-      checkboxes.forEach((checkbox) => (checkbox.checked = isChecked));
+    this.selectAllEls.forEach(selectAllEl => {
+        selectAllEl.addEventListener('change', (event) => {
+            const isChecked = event.target.checked;
+            const checkboxes = this.invoiceList.querySelectorAll('.invoice-checkbox');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = isChecked;
+            });
+        });
     });
-  }
+}
 
   addDeleteAllEvent() {
     this.deleteAllEl.addEventListener('click', () => {

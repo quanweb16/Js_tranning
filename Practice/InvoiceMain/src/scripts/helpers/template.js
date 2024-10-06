@@ -89,7 +89,7 @@ class Template {
               <div class="popup-form-edit">
                       <div class="form-group-edit">
                            <label for="invoice-id">Invoice Id</label>
-                           <span id="invoice-id" class="invoice-id">#8181</span> 
+                           <span id="invoice-id" class="invoice-id-edit">#8181</span> 
                            <span class="error-message-id"></span>
                       </div>
                       <div class="form-group-edit">

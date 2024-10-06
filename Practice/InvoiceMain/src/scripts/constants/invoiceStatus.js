@@ -1,6 +1,6 @@
 const INVOICE_STATUS = {
   PENDING: 'Pending',
-  COMPLETE: 'Complete',
+  COMPLETE: 'Completed',
   CANCELLED: 'Cancelled'
 };
 
