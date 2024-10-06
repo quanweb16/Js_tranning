@@ -1,5 +1,5 @@
 import InvoiceValidator from '../validation/invoiceValidate';
-import ErrorMessageDisplay from '../presentation/helpers/errorHandler';
+import ErrorMessageDisplay from '../helpers/errorHandler';
 import Invoice from '../models/invoice';
 
 class InvoiceBusiness {
