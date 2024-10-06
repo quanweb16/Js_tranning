@@ -3,11 +3,6 @@ import InvoiceDataAccess from './dataAccess/invoice.js';
 import InvoicePresentation from './presentation/invoice.js';
 
 class App {
-    constructor() {
-        this.invoicePresentation = null;
-        this.invoiceBusiness = null;
-        this.invoiceDataAccess = null;
-    }
 
     init() {
         this.invoiceDataAccess = new InvoiceDataAccess();
