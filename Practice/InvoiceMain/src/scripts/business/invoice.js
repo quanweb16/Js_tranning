@@ -5,8 +5,8 @@ import Invoice from '../models/invoice';
 class InvoiceBusiness {
   constructor(invoiceDataAccess) {
     this.dataAccess = invoiceDataAccess;
-    this.validateInvoices = new InvoiceValidator();
-    this.displayErrorMessages = new ErrorMessageDisplay();
+    this.invoiceValidator = new InvoiceValidator();
+    this.errorMessageDisplay = new ErrorMessageDisplay();
   }
 
   getInvoices() {
@@ -26,10 +26,10 @@ class InvoiceBusiness {
 
   addInvoice(data) {
     const invoices = this.getInvoices();
-    const validationResult = this.validateInvoices.validateInvoiceData(data, invoices);
+    const validationResult = this.invoiceValidator.validateInvoiceData(data, invoices);
     
     if (!validationResult.success) {
-      this.displayErrorMessages.showErrorsCreateInvoice(validationResult.errors);
+      this.errorMessageDisplay.showErrorsCreateInvoice(validationResult.errors);
       return null;
     }
 
@@ -41,10 +41,10 @@ class InvoiceBusiness {
 
   editInvoice(id, updatedData) {
     const invoices = this.getInvoices();
-    const validationResult = this.validateInvoices.validateInvoiceData(updatedData, invoices);
+    const validationResult = this.invoiceValidator.validateInvoiceData(updatedData, invoices);
     
     if (!validationResult.success) {
-      this.displayErrorMessages.showErrorsEditInvoice(validationResult.errors);
+      this.errorMessageDisplay.showErrorsEditInvoice(validationResult.errors);
       return null;
     }
 
@@ -74,13 +74,6 @@ class InvoiceBusiness {
       const emailMatch = invoice.email.toLowerCase().includes(query);
       const dateMatch = invoice.date.toLowerCase().includes(query);
       const statusMatch = invoice.status.toLowerCase().includes(query);
-
-      console.log('ID Match:', idMatch);
-      console.log('First Name Match:', firstNameMatch);
-      console.log('Last Name Match:', lastNameMatch);
-      console.log('Email Match:', emailMatch);
-      console.log('Date Match:', dateMatch);
-      console.log('Status Match:', statusMatch);
 
       return (
         idMatch ||
