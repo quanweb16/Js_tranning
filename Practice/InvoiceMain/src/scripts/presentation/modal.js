@@ -5,13 +5,13 @@ class ModalPresentation {
   constructor(invoiceBusiness) {
     this.invoiceBusiness = invoiceBusiness;
   }
+  
   init() {
     this.invoiceList = document.querySelector('.invoices .invoice-list .table-list-invoice');
-    this.addInvoiceGird = document.querySelector('.button-add-container');
-    this.addInvoiceEl = this.addInvoiceGird.querySelector('.add-invoice-btn');
-    this.modalGird = document.querySelector('.content-form');
-    this.modalEl = this.modalGird.querySelector('.content-form-invoice');
-    console.log(this.modalEl);
+    this.invoiceActionsContainer = document.querySelector('.invoices .invoice-header .actions');
+    this.contentForm = document.querySelector('.main-content .content-form');
+    this.addInvoiceEl = this.invoiceActionsContainer.querySelector('.add-invoice-btn');
+    this.modalEl = this.contentForm.querySelector('.content-form-invoice');
     this.addInvoiceEvent();
   }
 

@@ -10,15 +10,14 @@ class InvoicePresentation {
   init() {
     // Initial elements
     this.invoiceList = document.querySelector('.invoices .invoice-list .table-list-invoice');
+    this.invoiceActionsContainer = document.querySelector('.invoices .invoice-header .actions');
+    this.invoiceTableHeader = document.querySelector('.invoices .invoice-list .table-head');    
     this.editInvoiceEl = '.edit-invoice-btn';
     this.deleteInvoiceEl = '.delete-invoice-btn';
-    this.checkboxHeaderGrid = document.querySelector('.header-item.checkbox-header');
-    this.searchGird = document.querySelector('.search-container');
-    this.deleteAllGird = document.querySelector('.header-item.trash-header');
-    this.selectAllEls = this.checkboxHeaderGrid.querySelectorAll('.invoice-checkbox-all');
-    this.searchInputEl = this.searchGird.querySelector('.search-input');
-    this.searchButtonEl = this.searchGird.querySelector('.search-button');
-    this.deleteAllEl = this.deleteAllGird.querySelector('.delete-all');
+    this.searchInputEl = this.invoiceActionsContainer.querySelector('.search-input');
+    this.searchButtonEl = this.invoiceActionsContainer.querySelector('.search-button');
+    this.selectAllEls = this.invoiceTableHeader.querySelectorAll('.invoice-checkbox-all');
+    this.deleteAllEl = this.invoiceTableHeader.querySelector('.delete-all');
     this.setupActionMenuToggle();
     this.addSelectAllEvent();
     this.addDeleteAllEvent();
