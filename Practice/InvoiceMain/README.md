@@ -21,11 +21,11 @@
 # HOW TO RUN
 - Clone source
 ```bash
-https://github.com/quanweb16/javascript-training/tree/feature/create-ui
+https://github.com/quanweb16/javascript-training/tree/feature/practice
 ```
 Git checkout feature/practice
 ```bash
-git checkout feature/create-ui
+git checkout feature/practice
 ``` 
 Install packages
 ```bash
