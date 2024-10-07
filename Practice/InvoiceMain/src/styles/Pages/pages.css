@@ -68,13 +68,19 @@
   
 }
 
-.title {
-  display: flex;
+.actions{
+  width: 80%;
   align-items: center;
+ 
+}
+
+.invoice-header {
+  display: flex;
+
   margin-bottom: 20px;
 }
 
-.title h3 {
+.invoice-header h3 {
   margin: 0;
 }
 
