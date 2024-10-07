@@ -1,20 +1,21 @@
 class ErrorMessageDisplay {
+  showErrors(parentSelector, errors) {
+    const parentElement = document.querySelector(parentSelector);
+    
+    parentElement.querySelector('.error-message-date').innerHTML = errors.date || '';
+    parentElement.querySelector('.error-message-first-name').innerHTML = errors.firstName || '';
+    parentElement.querySelector('.error-message-last-name').innerHTML = errors.lastName || '';
+    parentElement.querySelector('.error-message-email').innerHTML = errors.email || '';
+    parentElement.querySelector('.error-message-city').innerHTML = errors.city || '';
+    parentElement.querySelector('.error-message-region').innerHTML = errors.region || '';
+  }
+
   showErrorsCreateInvoice(errors) {
-    this.modalEl.querySelector('.create-invoice-container .error-message-date').innerHTML = errors.date || '';
-    this.modalEl.querySelector('.create-invoice-container .error-message-first-name').innerHTML = errors.firstName || '';
-    this.modalEl.querySelector('.create-invoice-container .error-message-last-name').innerHTML = errors.lastName || '';
-    this.modalEl.querySelector('.create-invoice-container .error-message-email').innerHTML = errors.email || '';
-    this.modalEl.querySelector('.create-invoice-container .error-message-city').innerHTML = errors.city || '';
-    this.modalEl.querySelector('.create-invoice-container .error-message-region').innerHTML = errors.region || '';
+    this.showErrors('.create-invoice-container', errors);
   }
 
   showErrorsEditInvoice(errors) {
-    this.modalEl.querySelector('.edit-invoice-container .error-message-date').innerHTML = errors.date || '';
-    this.modalEl.querySelector('.edit-invoice-container .error-message-first-name').innerHTML = errors.firstName || '';
-    this.modalEl.querySelector('.edit-invoice-container .error-message-last-name').innerHTML = errors.lastName || '';
-    this.modalEl.querySelector('.edit-invoice-container .error-message-email').innerHTML = errors.email || '';
-    this.modalEl.querySelector('.edit-invoice-container .error-message-city').innerHTML = errors.city || '';
-    this.modalEl.querySelector('.edit-invoice-container .error-message-region').innerHTML = errors.region || '';
+    this.showErrors('.edit-invoice-container', errors);
   }
 }
 
