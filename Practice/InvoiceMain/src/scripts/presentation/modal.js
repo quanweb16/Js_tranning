@@ -9,9 +9,9 @@ class ModalPresentation {
   init() {
     this.invoiceList = document.querySelector('.invoices .invoice-list .table-list-invoice');
     this.invoiceActionsContainer = document.querySelector('.invoices .invoice-header .actions');
-    this.contentForm = document.querySelector('.main-content .content-form');
+    this.contentForm = document.querySelector('.main-content .modal-form');
     this.addInvoiceEl = this.invoiceActionsContainer.querySelector('.add-invoice-btn');
-    this.modalEl = this.contentForm.querySelector('.content-form-invoice');
+    this.modalEl = this.contentForm.querySelector('.modal-invoice-content');
     this.addInvoiceEvent();
   }
 
