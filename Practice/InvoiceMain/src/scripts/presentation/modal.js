@@ -5,7 +5,7 @@ class ModalPresentation {
   constructor(invoiceBusiness) {
     this.invoiceBusiness = invoiceBusiness;
   }
-  
+
   init() {
     this.invoiceList = document.querySelector('.invoices .invoice-list .table-list-invoice');
     this.invoiceActionsContainer = document.querySelector('.invoices .invoice-header .actions');
@@ -129,7 +129,6 @@ class ModalPresentation {
     this.modalEl.querySelector('.btn-invoice-edit').addEventListener('click', (event) => {
         event.preventDefault();
         const result = this.handleEditInvoices();
-        console.log('Edit Result:', result);
         if (result) {
           this.openNotificationEdit();
         }
@@ -190,7 +189,6 @@ class ModalPresentation {
   }
 
   handleDeleteAllInvoices() {
-    console.log(this.modalEl);
     const selectedCheckboxes = this.invoiceList.querySelectorAll('.invoice-checkbox:checked');
     selectedCheckboxes.forEach((checkbox) => {
       const id = checkbox.closest('.table-item').getAttribute('data-id');

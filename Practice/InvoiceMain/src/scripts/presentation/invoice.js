@@ -113,9 +113,7 @@ class InvoicePresentation {
 
   performSearch() {
     const query = this.searchInputEl.value;
-    console.log('Search Query:', query);
     const filteredInvoices = this.invoiceBusiness.searchInvoices(query);
-    console.log('Filtered Invoices:', filteredInvoices);
     this.displaySearchInvoices(filteredInvoices);
   }
 
