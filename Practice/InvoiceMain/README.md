@@ -31,13 +31,9 @@ cd javascript-training
 ```bash
 git checkout feature/practice
 ``` 
-- Go to folder Practice
+- Go to InvoiceMain inside Practice folder
 ```bash
-cd Practice 
-```
-- Go to folder InvoiceMain
-```bash
-cd InvoiceMain 
+cd Practice/InvoiceMain 
 ```
 - Install packages
 ```bash
