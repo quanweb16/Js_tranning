@@ -21,12 +21,20 @@
 # HOW TO RUN
 - Clone source
 ```bash
-https://github.com/quanweb16/javascript-training/tree/feature/practice
+https://github.com/quanweb16/javascript-training.git
 ```
-Git checkout feature/practice
+cd
+```bash
+cd javascript-training
+``` 
+git checkout
 ```bash
 git checkout feature/practice
 ``` 
+cd 
+```bash
+cd Practice/InvoiceMain 
+```
 Install packages
 ```bash
 npm install
