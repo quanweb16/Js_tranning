@@ -27,7 +27,7 @@ cd
 ```bash
 cd javascript-training
 ``` 
-git checkout
+Git checkout
 ```bash
 git checkout feature/practice
 ``` 
