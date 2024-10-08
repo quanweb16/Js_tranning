@@ -23,27 +23,27 @@
 ```bash
 https://github.com/quanweb16/javascript-training.git
 ```
-Go to folder Javascript-training
+- Go to folder Javascript-training
 ```bash
 cd javascript-training
 ``` 
-Git checkout feature/practice
+- Git checkout feature/practice
 ```bash
 git checkout feature/practice
 ``` 
-Go to folder Practice
+- Go to folder Practice
 ```bash
 cd Practice 
 ```
-Go to folder InvoiceMain
+- Go to folder InvoiceMain
 ```bash
 cd InvoiceMain 
 ```
-Install packages
+- Install packages
 ```bash
 npm install
 ```
-Run project
+- Run project
 ```bash
 npm start
 ```
