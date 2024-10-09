@@ -1,6 +1,5 @@
+// Define an object to store error messages
 const ERROR_MESSAGES = {
-  ID_REQUIRED: 'Invoice ID is required',
-  INVALID_ID: 'Invalid Invoice ID!',
   DATE_REQUIRED: 'Date is required',
   INVALID_DATE: 'Invalid date!',
   EMAIL_REQUIRED: 'Email is required',
