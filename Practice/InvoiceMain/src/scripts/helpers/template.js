@@ -17,10 +17,10 @@ class Template {
                   <div class="status-1">${data.status || ''}</div>
                   <button class="special"><i class="fas fa-star"></i></button>
                   <div class="action">
-                      <div class="dots"></div>
+                      <button class="dots"></button>
                       <div class="button-action">
-                          <div class="edit-invoice-btn">Edit</div>
-                          <div class="delete-invoice-btn">Delete</div>
+                          <button class="edit-invoice-btn">Edit</button>
+                          <button class="delete-invoice-btn">Delete</button>
                       </div>
                   </div>
               </div>
@@ -89,7 +89,7 @@ class Template {
               <div class="popup-form-edit">
                       <div class="form-group-edit">
                            <label for="invoice-id">Invoice Id</label>
-                           <span id="invoice-id" class="invoice-id-edit">#8181</span> 
+                           <span id="invoice-id" class="invoice-id">#8181</span> 
                            <span class="error-message-id"></span>
                       </div>
                       <div class="form-group-edit">
