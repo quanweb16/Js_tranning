@@ -114,6 +114,7 @@
   text-align: left;
 }
 
+
 .header-item.checkbox-header {
   flex: 0 0 40px;
 }
@@ -222,6 +223,8 @@
   color: #7c7c7c; 
   text-align: center; 
   font-size: 18px;
+  background: none;
+  border: none;
 }
 
 .dots:hover{
@@ -253,14 +256,16 @@
 .button-action .delete-invoice-btn {
   border-radius: 5px;
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: auto;
+  width: 80%;
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 2px 8px; 
   cursor: pointer;
-  border-radius: px;
   font-size: 12px; 
-  color: #333;
+  box-shadow: none;
+  border: none;
+
   transition: background-color 0.3s;
   text-align: center;
   display: block;
@@ -491,23 +496,6 @@
     box-sizing: border-box;
   }
 
-  .invoice-id-edit{
-    font-family: 'Arial', sans-serif; 
-    font-size: 20px;
-    font-weight: bold;
-    color: #eb0000;
-    background-color: #F0F8FF;
-    padding: 10px 15px;
-    border-radius: 5px;
-    border: 2px solid #ff2323;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    display: inline-block;
-    transition: background-color 0.3s;
-  }
-  .invoice-id-edit:hover {
-    background-color: #92dbfd;
-  }
-  
   .close-popup-edit {
     display: inline-block;
     cursor: pointer;
