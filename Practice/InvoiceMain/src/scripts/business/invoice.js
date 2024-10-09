@@ -8,56 +8,62 @@ class InvoiceBusiness {
     this.invoiceValidator = new InvoiceValidator();
     this.errorMessageDisplay = new ErrorMessageDisplay();
   }
-
+  
+  // Retrieves all invoices, mapping raw data to Invoice instances.
   getInvoices() {
-    return this.dataAccess.getInvoices();
+    const invoicesData = this.dataAccess.getInvoices();
+    return invoicesData.map(invoiceData => new Invoice(invoiceData));
   }
 
+  // Retrieves a single invoice by its ID, returning an Invoice instance.
   getInvoiceById(id) {
-    const invoices = this.getInvoices();
-    return invoices.find((invoice) => invoice.id === id) || null;
+    const invoiceData = this.dataAccess.getInvoiceById(id);
+    return invoiceData ? new Invoice(invoiceData) : null;
   }
 
+  // Deletes an invoice by its ID.
   deleteInvoice(id) {
     let invoices = this.getInvoices();
     invoices = invoices.filter((invoice) => invoice.id !== id);
-    this.dataAccess.saveInvoices(invoices);
+    this.dataAccess.updateInvoices(invoices);
   }
 
+  // Adds a new invoice after validating the data.
   addInvoice(data) {
     const invoices = this.getInvoices();
     const validationResult = this.invoiceValidator.validateInvoiceData(data, invoices);
-    
+
     if (!validationResult.success) {
-      this.errorMessageDisplay.showErrorsCreateInvoice(validationResult.errors);
-      return null;
+      return { success: false, errors: validationResult.errors };
     }
 
     const newInvoice = new Invoice(data);
     this.dataAccess.addInvoice(newInvoice);
     
-    return newInvoice;
+    return { success: true, invoice: newInvoice };
   }
 
+  // Edits an existing invoice by ID after validating the data.
   editInvoice(id, updatedData) {
     const invoices = this.getInvoices();
     const validationResult = this.invoiceValidator.validateInvoiceData(updatedData, invoices);
-    
+
     if (!validationResult.success) {
-      this.errorMessageDisplay.showErrorsEditInvoice(validationResult.errors);
-      return null;
+      return { success: false, errors: validationResult.errors };
     }
 
     const index = invoices.findIndex((invoice) => invoice.id === id);
     if (index === -1) {
-      return false;
+      return { success: false, errors: [] };
     }
 
     invoices[index] = { ...invoices[index], ...updatedData };
-    this.dataAccess.saveInvoices(invoices);
-    return true;
+    this.dataAccess.updateInvoices(invoices);
+    
+    return { success: true, invoice: invoices[index] };
   }
 
+  // Searches for invoices matching the query across various fields.
   searchInvoices(query) {
     const invoices = this.getInvoices();
 
