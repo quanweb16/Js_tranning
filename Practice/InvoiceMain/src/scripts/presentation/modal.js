@@ -188,7 +188,6 @@ class ModalPresentation {
     return result;
   }
 
-  
   handleDeleteInvoice(id) {
     // Delete the invoice using the business logic
     this.invoiceBusiness.deleteInvoice(id);
@@ -205,14 +204,6 @@ class ModalPresentation {
     });
     this.closeModal();
     location.reload(); // Reload the page to reflect changes
-  }
-  
-  clearErrorMessages() {
-    // Clear all error messages in the modal
-    const errorMessages = this.modalEl.querySelectorAll('.error-message');
-    errorMessages.forEach(errorElement => {
-      errorElement.innerHTML = '';
-    });
   }
   
   closeModal() {
