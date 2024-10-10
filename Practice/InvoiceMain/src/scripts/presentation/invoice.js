@@ -60,7 +60,8 @@ class InvoicePresentation {
       if (!event.target.closest(this.editInvoiceEl)) return;
       const tableItem = event.target.closest('.table-item');
       const id = tableItem.getAttribute('data-id');
-      this.openEditModal(id);
+      const data = this.invoiceBusiness.getInvoiceById(id);
+      this.modal.openEditInvoiceModal(data);
       const buttonAction = tableItem.querySelector('.button-action');
       if (buttonAction) {
         buttonAction.style.display = 'none';
@@ -74,14 +75,15 @@ class InvoicePresentation {
       if (!event.target.closest(this.deleteInvoiceEl)) return;
       const tableItem = event.target.closest('.table-item');
       const id = tableItem.getAttribute('data-id');
-      this.openDeleteModal(id);
+      const data = this.invoiceBusiness.getInvoiceById(id);
+      this.modal.openDeleteInvoiceModal(data);
       const buttonAction = tableItem.querySelector('.button-action');
       if (buttonAction) {
         buttonAction.style.display = 'none';
       }
     });
   }
-
+  
   addSelectAllEvent() {
     // Adds event listener for select all checkboxes
     this.selectAllEls.forEach(selectAllEl => {
@@ -131,23 +133,6 @@ class InvoicePresentation {
     // Displays search results or shows all invoices if no filtered data is provided
     const data = filteredData || this.invoiceBusiness.getInvoices();
     this.addInvoiceToList(data);
-  }
-  
-  openDeleteAllModal() {
-    // Opens the modal to delete all invoices
-    this.modal.openDeleteAllInvoiceModal();
-  }
-  
-  openDeleteModal(id) {
-    // Opens the modal to delete a specific invoice by ID
-    const data = this.invoiceBusiness.getInvoiceById(id);
-    this.modal.openDeleteInvoiceModal(data);
-  }
-  
-  openEditModal(id) {
-    // Opens the modal to edit a specific invoice by ID
-    const data = this.invoiceBusiness.getInvoiceById(id);
-    this.modal.openEditInvoiceModal(data);
   }
   
   addInvoiceToList(data) {
