@@ -18,12 +18,29 @@ class InvoiceDataAccess {
   addInvoice(invoice) {
       const invoices = this.getInvoices();
       invoices.push(invoice); // Add the new invoice to the existing array of invoices.
-      this.updateInvoices(invoices); // Update localStorage with the new list of invoices.
+      this.saveInvoices(invoices); // Update localStorage with the new list of invoices.
   }
 
   // Update the list of invoices in localStorage.
-  updateInvoices(invoices) {
-      localStorage.setItem('invoices', JSON.stringify(invoices)); // Convert the array of invoices to JSON and save to localStorage.
+  updateInvoice(id, updatedData) {
+    const invoices = this.getInvoices();
+    const index = invoices.findIndex((invoice) => invoice.id === id);
+    if (index === -1) {
+      return false;
+    }
+    invoices[index] = { ...invoices[index], ...updatedData };
+    this.saveInvoices(invoices);// Updates localStorage with the new list of invoices.
+    return true;
+  }
+  // Deletes an invoice by its ID
+  deleteInvoice(id) {
+    let invoices = this.getInvoices();
+    invoices = invoices.filter((invoice) => invoice.id !== id);
+    this.saveInvoices(invoices); // Updates localStorage with the new list of invoices.
+  }
+  // Saves the list of invoices to localStorage
+  saveInvoices(invoices) {
+    localStorage.setItem('invoices', JSON.stringify(invoices)); 
   }
 }
 

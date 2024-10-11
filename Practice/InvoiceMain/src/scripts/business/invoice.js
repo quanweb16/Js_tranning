@@ -21,13 +21,6 @@ class InvoiceBusiness {
     return invoiceData ? new Invoice(invoiceData) : null;
   }
 
-  // Deletes an invoice by its ID.
-  deleteInvoice(id) {
-    let invoices = this.getInvoices();
-    invoices = invoices.filter((invoice) => invoice.id !== id);
-    this.dataAccess.updateInvoices(invoices);
-  }
-
   // Adds a new invoice after validating the data.
   addInvoice(data) {
     const invoices = this.getInvoices();
@@ -47,20 +40,18 @@ class InvoiceBusiness {
   editInvoice(id, updatedData) {
     const invoices = this.getInvoices();
     const validationResult = this.invoiceValidator.validateInvoiceData(updatedData, invoices);
-
+  
     if (!validationResult.success) {
       return { success: false, errors: validationResult.errors };
     }
+  
+    this.dataAccess.updateInvoice(id, updatedData);
 
-    const index = invoices.findIndex((invoice) => invoice.id === id);
-    if (index === -1) {
-      return { success: false, errors: [] };
-    }
-
-    invoices[index] = { ...invoices[index], ...updatedData };
-    this.dataAccess.updateInvoices(invoices);
-    
-    return { success: true, invoice: invoices[index] };
+    return { success: true, invoice: updatedData };
+  }
+  // Deletes an invoice by its ID.
+  deleteInvoice(id) {
+    this.dataAccess.deleteInvoice(id); 
   }
 
   // Searches for invoices matching the query across various fields.
