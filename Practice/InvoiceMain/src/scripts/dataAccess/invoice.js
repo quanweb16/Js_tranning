@@ -32,12 +32,14 @@ class InvoiceDataAccess {
     this.saveInvoices(invoices);// Updates localStorage with the new list of invoices.
     return true;
   }
+  
   // Deletes an invoice by its ID
   deleteInvoice(id) {
     let invoices = this.getInvoices();
     invoices = invoices.filter((invoice) => invoice.id !== id);
     this.saveInvoices(invoices); // Updates localStorage with the new list of invoices.
   }
+
   // Saves the list of invoices to localStorage
   saveInvoices(invoices) {
     localStorage.setItem('invoices', JSON.stringify(invoices)); 

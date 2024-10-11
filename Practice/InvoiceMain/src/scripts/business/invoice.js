@@ -49,6 +49,7 @@ class InvoiceBusiness {
 
     return { success: true, invoice: updatedData };
   }
+  
   // Deletes an invoice by its ID.
   deleteInvoice(id) {
     this.dataAccess.deleteInvoice(id); 
